@@ -5,6 +5,7 @@ function renderMap(pos) {
   let latitude = pos.coords.latitude;
   let longitude = pos.coords.longitude;
   let radius = pos.coords.accuracy;
+  console.log(latitude, longitude);
 
   let map = L.map('map').setView([latitude, longitude], 13);
 
