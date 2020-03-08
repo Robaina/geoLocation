@@ -115,4 +115,4 @@ function haversine(x, y) {
   return distance_in_meters
 }
 
-setInterval(function(){ updateMap(); }, 10 * 1000);
+setInterval(function(){ updateMap(); }, 5 * 1000);
