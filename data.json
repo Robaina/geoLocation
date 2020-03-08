@@ -1,0 +1,22 @@
+data = {
+  "loc1": {
+    "coords": [28.571261, -16.317934],
+    "tag": "Mirador Los Hermanos",
+    "text": "<p>Ya hace diez años del evento, sin embargo la gente del pueblo lo recuerda muy bien... Todo comenzó justo donde estás ahora, en el mirador de Los Hermanos. Aunque a diferencia de hoy, un día de temporal invernal.</p>"
+  },
+  "loc2": {
+    "coords": [28.569496, -16.323238],
+    "tag": "Torre del Conde",
+    "text": "<p>La dueña de la Torre del Conde tenía dinero y no sabía que hacer con él. Por eso mandó a construir una réplica de la Torre del Conde de San Sebastián de La Gomer, aquí en La Punta. Lo que muchos no saben, es que este viejo edificio, fue cómplice de uno del mayor horror sufridos por este pueblo. Continúa hacía la Iglesia...</p>"
+  },
+  "loc3": {
+    "coords": [28.568669, -16.325341],
+    "tag": "Iglesia",
+    "text": "<p>Esta Iglesia es la única construida con ladrillo rojo en la isla de Tenerife. Rojo porque está hecho con la sangre de Satanás! No, es coña, simplemente les gustaba el color.</p>"
+  },
+  "loc4": {
+    "coords": [28.566437, -16.331773],
+    "tag": "Piscina",
+    "text": "<p>La piscina de La Punta del Hidalgo, lugar frecuentado por los locales. Donde, además de tomar un baño, comentan las últimas novedades que han pasado en el pueblo...</p>"
+  }
+}

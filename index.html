@@ -10,32 +10,44 @@
     <title>HTML5 Geolocation</title>
     <link rel="icon" type="image/png" href="earth.png">
     <!-- <script src="http://www.webglearth.com/v2/api.js"></script> -->
+    <script src="data.json"></script>
     <script src="leaflet.js"></script>
     <link rel="stylesheet" href="leaflet.css">
     <link rel="stylesheet" href="styles.css">
   </head>
 
-  <body>
+  <body onload="initialize()">
 
     <div id="title">
-      <h1>HTML5 Geolocation</h1>
+      <h1>El misterio de La Punta</h1>
     </div>
 
     <div id="map"></div>
 
     <article id="about">
-      <h1>What is this?</h1>
-      <p>Explore the current google search trends around the world, that is, at least the countries for which there are data! Click on a marker to show a list of the first search trends in the country. Click again or on the "x" to close the popup.</p>
 
-      <p>This app functions thanks to the <a href="https://www.npmjs.com/package/google-trends-api">google trends api</a> from which the data are downloaded. Data are then displayed in an animated world map using country coordinates. The world map is powered by <a href="https://www.webglearth.com/">webGL Earth</a>.</p>
+      <div class="text-popup" id="loc1">
+        <p>Ya hace diez años del evento, sin embargo la gente del pueblo lo recuerda muy bien... Todo comenzó justo donde estás ahora, en el mirador de Los Hermanos. Aunque a diferencia de hoy, un día de temporal invernal.</p>
+      </div>
+
+      <div class="text-popup" id="loc2">
+        <p>La dueña de la Torre del Conde tenía dinero y no sabía que hacer con él. Por eso mandó a construir una réplica de la Torre del Conde de San Sebastián de La Gomer, aquí en La Punta. Lo que muchos no saben, es que este viejo edificio, fue cómplice de uno del mayor horror sufridos por este pueblo. Continúa hacía la Iglesia...</p>
+      </div>
+
+      <div class="text-popup" id="loc3">
+       <p>Esta Iglesia es la única construida con ladrillo rojo en la isla de Tenerife. Rojo porque está hecho con la sangre de Satanás! No, es coña, simplemente les gustaba el color.</p>
+      </div>
+
+      <div class="text-popup" id="loc4">
+       <p>La piscina de La Punta del Hidalgo, lugar frecuentado por los locales. Donde, además de tomar un baño, comentan las últimas novedades que han pasado en el pueblo...</p>
+      </div>
 
       <footer id="footer">
-        <p><a href="https://semidanrobaina.com">Semidán Robaina Estévez</a>, 2019.</p>
+        <p><a href="https://semidanrobaina.com">Semidán Robaina Estévez</a>, 2020.</p>
       </footer>
 
     </article>
 
     <script src="script.js"></script>
-
   </body>
 </html>
