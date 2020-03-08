@@ -67,7 +67,7 @@ function updateMap() {
 }
 
 function displayText(latitude, longitude, radius) {
-  let limit = 10; // meters
+  let limit = 20; // meters
   let current_coords = [latitude, longitude];
 
   let texts = document.getElementsByClassName("text-popup");
@@ -115,4 +115,4 @@ function haversine(x, y) {
   return distance_in_meters
 }
 
-setInterval(function(){ updateMap(); }, 60 * 1000);
+setInterval(function(){ updateMap(); }, 10 * 1000);
