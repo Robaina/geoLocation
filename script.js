@@ -1,4 +1,5 @@
 let map, current_marker, circle;
+let loc_to_find = {};
 
 function initialize() {
   navigator.geolocation.getCurrentPosition(function(pos) {
@@ -39,6 +40,7 @@ function renderMap(latitude, longitude, radius) {
   });
 
   for (let loc of Object.keys(data)) {
+    loc_to_find[loc] = true;
     L.marker(data[loc].coords, {icon: greenIcon}).addTo(map);
   }
 }
@@ -65,7 +67,7 @@ function updateMap() {
 }
 
 function displayText(latitude, longitude, radius) {
-  let limit = 50; // meters
+  let limit = 10; // meters
   let current_coords = [latitude, longitude];
 
   let texts = document.getElementsByClassName("text-popup");
@@ -76,9 +78,12 @@ function displayText(latitude, longitude, radius) {
   for (let key of Object.keys(data)) {
     let distance = haversine(current_coords, data[key].coords);
     if ((distance - radius) < limit) {
-      navigator.vibrate([200, 100, 200]);
+      if (loc_to_find[key]) {
+        navigator.vibrate([200, 100, 200]);
+      }
       let div = document.getElementById(key);
       div.style.display = "block";
+      loc_to_find[key] = false;
     }
   }
 }
