@@ -76,6 +76,7 @@ function displayText(latitude, longitude, radius) {
   for (let key of Object.keys(data)) {
     let distance = haversine(current_coords, data[key].coords);
     if ((distance - radius) < limit) {
+      navigator.vibrate([200, 100, 200]);
       let div = document.getElementById(key);
       div.style.display = "block";
     }
