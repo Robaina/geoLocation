@@ -22,5 +22,11 @@ data = {
     "tag": "Piscina",
     "text": "La piscina de La Punta del Hidalgo, lugar frecuentado por los locales. Donde, además de tomar un baño, comentan las últimas novedades que han pasado en el pueblo...",
     "img": "images/piscina.jpg"
+  },
+  "loc5": {
+    "coords": [28.576377, -16.328743],
+    "tag": "Faro",
+    "text": "El Faro de La Punta. Parece un lugar solemne y tranquilo, pero esconde muchos secretos... No dejes de ver el atardecer desde sus bancos, aunque te aconsejo que vigiles to espalda.",
+    "img": "images/faro.jpg"
   }
 }

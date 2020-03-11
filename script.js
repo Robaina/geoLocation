@@ -131,7 +131,7 @@ function initializeMap() {
 // }
 
 function updateMap(pos) {
-  console.log(pos.latlng);
+  // console.log(pos.latlng);
   let radius = pos.accuracy / 2;
   map.removeLayer(current_marker);
   map.removeLayer(circle);
@@ -142,7 +142,7 @@ function updateMap(pos) {
   		fillColor: 'rgb(86, 155, 227)',
   		fillOpacity: 0.5
   	}).addTo(map);
-  map.setView(pos.latlng, 18);
+  map.setView(pos.latlng, 16);
   displayText(pos.latlng, radius);
 }
 
@@ -162,7 +162,8 @@ function displayText(current_coords, radius) {
   }
 
   for (let key of Object.keys(data)) {
-    let distance = haversine(current_coords, data[key].coords);
+    // let distance = haversine(current_coords, data[key].coords);
+    let distance = map.distance(current_coords, data[key].coords);
     if (distance < limit) {
     // if ((distance - radius) < limit) {
       if (!data[key].showed) {
