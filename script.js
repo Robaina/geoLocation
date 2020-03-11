@@ -80,6 +80,7 @@ let map, current_marker, circle;
 function initializeMap() {
 
   map = L.map('map');
+  map.setView(Object.entries(data)[0][1].coords, 16);
 
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
