@@ -105,7 +105,7 @@ function initializeMap() {
     setView: false,
     maxZoom: 16,
     watch: true,
-    enableHighAccuracy: true
+    enableHighAccuracy: false
   });
   map.on('locationfound', updateMap);
 
