@@ -106,6 +106,27 @@ function initializeMap() {
              watch:true
            });
   map.on('locationfound', updateMap);
+
+  // Create text divs
+  let text_container = document.getElementById("text_container");
+  for (let key of Object.keys(data)) {
+    data[key].showed = false;
+    let div = document.createElement("div");
+    div.setAttribute("class", "text-popup");
+    div.setAttribute("id", key);
+    let title = document.createElement("h2");
+    title.setAttribute("class", "text-title");
+    title.innerHTML = data[key].tag;
+    div.appendChild(title);
+    let img = document.createElement("img");
+    img.setAttribute("class", "text-image");
+    img.setAttribute("src", data[key].img);
+    div.appendChild(img);
+    let p = document.createElement("p");
+    p.innerHTML = data[key].text;
+    div.appendChild(p);
+    text_container.appendChild(div);
+  }
 }
 
 // function updateMap() {
@@ -155,7 +176,7 @@ function updateMap(pos) {
 // }
 
 function displayText(current_coords, radius) {
-  let limit = 30; // meters
+  let limit = 300000; // meters
   let texts = document.getElementsByClassName("text-popup");
   for (let text of texts) {
     text.style.display = "none";
@@ -180,27 +201,27 @@ function displayText(current_coords, radius) {
 //   return Math.sqrt((x[0] - y[0])**2 + (x[1] - y[1])**2)
 // }
 
-function toRadians(degrees) {
-  return degrees * (Math.PI / 180);
-}
-
-function haversine(x, y) {
-  let R = 6371e3; // metres
-  let lat1 = x[0];
-  let lat2 = y[0];
-  let lon1 = x[1];
-  let lon2 = y[1];
-  let φ1 = toRadians(lat1);
-  let φ2 = toRadians(lat2);
-  let Δφ = toRadians(lat2 - lat1);
-  let Δλ = toRadians(lon2 - lon1);
-
-  let a = Math.sin(Δφ / 2) * Math.sin(Δφ / 2) +
-          Math.cos(φ1) * Math.cos(φ2) *
-          Math.sin(Δλ / 2) * Math.sin(Δλ / 2);
-  let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-  let distance_in_meters = R * c;
-  return distance_in_meters
-}
+// function toRadians(degrees) {
+//   return degrees * (Math.PI / 180);
+// }
+//
+// function haversine(x, y) {
+//   let R = 6371e3; // metres
+//   let lat1 = x[0];
+//   let lat2 = y[0];
+//   let lon1 = x[1];
+//   let lon2 = y[1];
+//   let φ1 = toRadians(lat1);
+//   let φ2 = toRadians(lat2);
+//   let Δφ = toRadians(lat2 - lat1);
+//   let Δλ = toRadians(lon2 - lon1);
+//
+//   let a = Math.sin(Δφ / 2) * Math.sin(Δφ / 2) +
+//           Math.cos(φ1) * Math.cos(φ2) *
+//           Math.sin(Δλ / 2) * Math.sin(Δλ / 2);
+//   let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+//   let distance_in_meters = R * c;
+//   return distance_in_meters
+// }
 
 //setInterval(function(){ updateMap(); }, 5 * 1000);
