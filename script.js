@@ -1,5 +1,4 @@
 let map, current_marker, circle;
-let loc_to_find = {};
 
 function initialize() {
   navigator.geolocation.getCurrentPosition(function(pos) {
@@ -7,14 +6,42 @@ function initialize() {
     let longitude = pos.coords.longitude;
     let radius = pos.coords.accuracy;
     renderMap(latitude, longitude, radius);
+
+    // let locate_options = {
+    //   "watch": true,
+    //   "setView": true,
+    //   "enableHighAccuracy": true
+    // }
+    // map.locate(locate_options);
+
+
     displayText(latitude, longitude, radius);
    }
   );
+  let text_container = document.getElementById("text_container");
+  for (let key of Object.keys(data)) {
+    data[key].showed = false;
+    let div = document.createElement("div");
+    div.setAttribute("class", "text-popup");
+    div.setAttribute("id", key);
+    let title = document.createElement("h2");
+    title.setAttribute("class", "text-title");
+    title.innerHTML = data[key].tag;
+    div.appendChild(title);
+    let img = document.createElement("img");
+    img.setAttribute("class", "text-image");
+    img.setAttribute("src", data[key].img);
+    div.appendChild(img);
+    let p = document.createElement("p");
+    p.innerHTML = data[key].text;
+    div.appendChild(p);
+    text_container.appendChild(div);
+  }
 }
 
 function renderMap(latitude, longitude, radius) {
 
-  map = L.map('map').setView([latitude, longitude], 20);
+  map = L.map('map').setView([latitude, longitude], 15);
 
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -31,8 +58,8 @@ function renderMap(latitude, longitude, radius) {
   	}).addTo(map);//.bindPopup("I am a circle.");
 
   let greenIcon = new L.Icon({
-    iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
-    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+    iconUrl: 'images/green_marker.png',
+    shadowUrl: 'images/marker-shadow.png',
     iconSize: [25, 41],
     iconAnchor: [12, 41],
     popupAnchor: [1, -34],
@@ -40,7 +67,6 @@ function renderMap(latitude, longitude, radius) {
   });
 
   for (let loc of Object.keys(data)) {
-    loc_to_find[loc] = true;
     L.marker(data[loc].coords, {icon: greenIcon}).addTo(map);
   }
 }
@@ -61,6 +87,7 @@ function updateMap() {
         fillOpacity: 0.5
       }).addTo(map);
 
+    map.setView([latitude, longitude], 15);
     displayText(latitude, longitude, radius);
    }
  );
@@ -77,13 +104,14 @@ function displayText(latitude, longitude, radius) {
 
   for (let key of Object.keys(data)) {
     let distance = haversine(current_coords, data[key].coords);
-    if ((distance - radius) < limit) {
-      if (loc_to_find[key]) {
+    if (distance < limit) {
+    // if ((distance - radius) < limit) {
+      if (!data[key].showed) {
         navigator.vibrate([200, 100, 200]);
       }
       let div = document.getElementById(key);
       div.style.display = "block";
-      loc_to_find[key] = false;
+      data[key].showed = true;
     }
   }
 }
