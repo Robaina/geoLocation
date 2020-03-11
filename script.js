@@ -105,7 +105,7 @@ function initializeMap() {
     setView: false,
     maxZoom: 16,
     watch: true,
-    enableHighAccuracy: false
+    enableHighAccuracy: true
   });
   map.on('locationfound', updateMap);
 
@@ -165,7 +165,7 @@ function updateMap(pos) {
   		fillColor: 'rgb(86, 155, 227)',
   		fillOpacity: 0.5
   	}).addTo(map);
-  map.setView(pos.latlng, 16);
+  // map.setView(pos.latlng, 16);
   displayText(pos.latlng, radius);
 }
 
