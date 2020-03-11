@@ -2,6 +2,7 @@
   --backgroundColor: rgb(6, 6, 6);
   --fancyColor: rgb(233, 221, 5);
 }
+
 html, body {
   padding: 0;
   margin: 0;
@@ -17,13 +18,13 @@ a {
 
 #map-container {
   text-align: center;
-  top: 20vh;
-  right: 0;
+  /* top: 20vh; */
+  /* right: 0;
   bottom: 0;
-  left: 0vw;
+  left: 0vw; */
   width: 100vw;
-  height: 35vh;
-  position: absolute !important;
+  height: 45vh;
+  /* position: absolute !important; */
 }
 
 #map {
@@ -35,20 +36,22 @@ a {
 }
 
 img {
-  filter: grayscale(1000%);
+  filter: grayscale(0%);
 }
 
 #title {
   width: 100vw;
   height: 10vh;
-  top: 5vh;
+  margin-top: 5vh;
+  margin-bottom: 5vh;
+  /* top: 5vh; */
   text-align: center;
   /* margin-top: 5vh; */
-  position: absolute;
+  /* position: absolute; */
   z-index: 2 !important;
 }
 #title > h1 {
-  color: violet;
+  color: white;
   font-size: 3.5em;
   font-family: sans-serif;
   margin: 0;
@@ -62,7 +65,7 @@ img {
   font-size: 1.3em;
   color: white;
   font-family: sans-serif;
-  position: absolute;
+  /* position: absolute; */
   top: 60vh;
   left: 25vw;
   text-align: justify;
