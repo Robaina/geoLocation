@@ -48,7 +48,7 @@ img {
   z-index: 2 !important;
 }
 #title > h1 {
-  color: white;
+  color: red;
   font-size: 3.5em;
   font-family: sans-serif;
   margin: 0;
