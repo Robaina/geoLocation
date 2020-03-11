@@ -104,7 +104,7 @@ function initializeMap() {
   map.locate({
     setView: false,
     maxZoom: 16,
-    watch:true,
+    watch: true,
     enableHighAccuracy: true
   });
   map.on('locationfound', updateMap);
@@ -178,7 +178,7 @@ function updateMap(pos) {
 // }
 
 function displayText(current_coords, radius) {
-  let limit = 300000; // meters
+  let limit = 30; // meters
   let texts = document.getElementsByClassName("text-popup");
   for (let text of texts) {
     text.style.display = "none";
