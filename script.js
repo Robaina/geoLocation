@@ -101,10 +101,12 @@ function initializeMap() {
     L.marker(data[loc].coords, {icon: greenIcon}).addTo(map);
   }
 
-  map.locate({setView: true,
-             maxZoom: 16,
-             watch:true
-           });
+  map.locate({
+    setView: false,
+    maxZoom: 16,
+    watch:true,
+    enableHighAccuracy: true
+  });
   map.on('locationfound', updateMap);
 
   // Create text divs
