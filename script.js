@@ -74,11 +74,9 @@ function is_mobile() {
 }
 
 function updateMap(pos) {
-  
-  for (let loc of Object.keys(data)) {
-    if (Object.values(text_on_display).every(value => value === false)) {
-      hideText();
-    }
+
+  if (Object.values(text_on_display).every(value => value === false)) {
+    hideText();
   }
 
   let accuracy_radius = pos.accuracy / 2; // meters
