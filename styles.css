@@ -70,7 +70,7 @@ img {
   margin: 3vh;
 }
 .grid_item {
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
   text-align: center;
@@ -125,7 +125,7 @@ img {
 
 /* Scroll bar */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 1vw;
   background-color: var(--backgroundColor);
 }
 ::-webkit-scrollbar-track {

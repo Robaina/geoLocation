@@ -59,10 +59,14 @@ function displayText(loc) {
   div.appendChild(p);
 }
 
+function is_mobile() {
+  return window.innerWidth < 600
+}
+
 function updateMap(pos) {
   let accuracy_radius = pos.accuracy / 2; // meters
-  let dist_limit = 30; // meters
-  if (accuracy_radius < 100) {
+  let dist_limit = 30000000; // meters
+  if (accuracy_radius < 1000000) {
     map.removeLayer(current_marker);
     map.removeLayer(circle);
     current_marker = L.marker(pos.latlng).addTo(map);
@@ -74,40 +78,18 @@ function updateMap(pos) {
 
     for (let loc of Object.keys(data)) {
       let distance = map.distance(pos.latlng, data[loc].coords);
-      if (distance < dist_limit) {
+      if (distance < dist_limit && !data[loc].showed) {
         displayText(loc);
-        if (!data[loc].showed && "vibrate" in navigator) {
+        if (is_mobile() && "vibrate" in navigator) {
           navigator.vibrate([200, 100, 200]);
         }
         data[loc].showed = true;
+        let grid_item = document.getElementById(`grid_item_${loc}`);
+        grid_item.style.display = "flex";
       }
     }
   }
 }
-
-
-// function displayText(current_coords, radius) {
-//   let limit = 300000; // meters
-//   let text_divs = document.getElementsByClassName("text-popup");
-//   for (let text of text_divs) {
-//     text.style.display = "none";
-//   }
-//
-//   for (let loc of Object.keys(data)) {
-//     // let distance = haversine(current_coords, data[loc].coords);
-//     let distance = map.distance(current_coords, data[loc].coords);
-//     if (distance < limit) {
-//     // if ((distance - radius) < limit) {
-//       if (!data[loc].showed) {
-//         // navigator.vibrate([200, 100, 200]);
-//       }
-//       let div = document.getElementById(loc);
-//       div.style.display = "block";
-//       data[loc].showed = true;
-//
-//     }
-//   }
-// }
 
 function openCollectedText(elem) {
   let loc = elem.target.id.split("_").pop();

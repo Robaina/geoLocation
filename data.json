@@ -28,5 +28,17 @@ data = {
     "tag": "Faro",
     "text": "El Faro de La Punta. Parece un lugar solemne y tranquilo, pero esconde muchos secretos... No dejes de ver el atardecer desde sus bancos, aunque te aconsejo que vigiles to espalda.",
     "img": "faro.jpg"
+  },
+  "loc6": {
+    "coords": [28.577488, -16.319080],
+    "tag": "Ermita",
+    "text": "La ermita de San Juanito, referente de los feligreses punteros. La ermina es hogar de la imagen de San Juan. También es hogar de otras cosas más tenebrosas...",
+    "img": "ermita.jpg"
+  },
+  "loc7": {
+    "coords": [28.570509, -16.332885],
+    "tag": "Los charcos",
+    "text": "Este es uno de los lugares de baño habituales, tanto de locales como de foráneos. Las antiguas coladas de lava adoptan formas caprichosas, creando pequeños charcos y túneles submarinos. Uno de ellos escondió un horror de dimensiones inimaginables...",
+    "img": "piscina.jpg"
   }
 }
