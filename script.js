@@ -2,8 +2,13 @@ let map, current_marker, circle;
 
 function initializeMap() {
 
-  map = L.map('map');
-  map.setView(Object.entries(data)[0][1].coords, 16);
+  map = L.map('map', {
+    minZoom: 14.5,
+    zoomSnap: 0.1
+  });
+  let loc_coords = Object.entries(data).map(entry => entry[1].coords);
+  let map_center = L.polygon(loc_coords).getBounds().getCenter();
+  map.setView(map_center, 14.4);
 
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -22,83 +27,112 @@ function initializeMap() {
   });
 
   for (let loc of Object.keys(data)) {
+    data[loc].showed = false;
     L.marker(data[loc].coords, {icon: greenIcon}).addTo(map);
   }
 
   map.locate({
     setView: false,
-    maxZoom: 16,
+    minZoom: 14.5,
     watch: true,
     enableHighAccuracy: true
   });
   map.on('locationfound', updateMap);
 
   // Create text divs
-  let text_container = document.getElementById("text_container");
-  for (let key of Object.keys(data)) {
-    data[key].showed = false;
-    let div = document.createElement("div");
-    div.setAttribute("class", "text-popup");
-    div.setAttribute("id", key);
-    let title = document.createElement("h2");
-    title.setAttribute("class", "text-title");
-    title.innerHTML = data[key].tag;
-    div.appendChild(title);
-    let img = document.createElement("img");
-    img.setAttribute("class", "text-image");
-    img.setAttribute("src", `images/${data[key].img}`);
-    div.appendChild(img);
-    let p = document.createElement("p");
-    p.innerHTML = data[key].text;
-    div.appendChild(p);
-    text_container.appendChild(div);
-  }
+  // let text_container = document.getElementById("text_container");
+  // for (let loc of Object.keys(data)) {
+  //   data[loc].showed = false;
+  //   let div = document.createElement("div");
+  //   div.setAttribute("class", "text-popup");
+  //   div.setAttribute("id", loc);
+  //   let title = document.createElement("h2");
+  //   title.setAttribute("class", "text-title");
+  //   title.innerHTML = data[loc].tag;
+  //   div.appendChild(title);
+  //   let img = document.createElement("img");
+  //   img.setAttribute("class", "text-image");
+  //   img.setAttribute("src", `images/${data[loc].img}`);
+  //   div.appendChild(img);
+  //   let p = document.createElement("p");
+  //   p.innerHTML = data[loc].text;
+  //   div.appendChild(p);
+  //   text_container.appendChild(div);
+  // }
   buildTextGrid();
 }
 
+function displayText(loc) {
+  let div = document.getElementById("text_container");
+  div.innerHTML = "";
+  let title = document.createElement("h2");
+  title.setAttribute("class", "text-title");
+  title.innerHTML = data[loc].tag;
+  div.appendChild(title);
+  let img = document.createElement("img");
+  img.setAttribute("class", "text-image");
+  img.setAttribute("src", `images/${data[loc].img}`);
+  div.appendChild(img);
+  let p = document.createElement("p");
+  p.innerHTML = data[loc].text;
+  div.appendChild(p);
+}
+
 function updateMap(pos) {
-  let radius = pos.accuracy / 2; // meters
-  if (radius < 200) {
+  let accuracy_radius = pos.accuracy / 2; // meters
+  let dist_limit = 30; // meters
+  if (accuracy_radius < 100) {
     map.removeLayer(current_marker);
     map.removeLayer(circle);
     current_marker = L.marker(pos.latlng).addTo(map);
-    circle = L.circle(pos.latlng, {radius: radius}, {
+    circle = L.circle(pos.latlng, {radius: accuracy_radius}, {
         color: 'blue',
         fillColor: 'rgb(86, 155, 227)',
         fillOpacity: 0.5
       }).addTo(map);
-    // map.setView(pos.latlng, 16);
-    // displayText(pos.latlng, radius);
-  }
-}
 
-
-function displayText(current_coords, radius) {
-  let limit = 300000; // meters
-  let text_divs = document.getElementsByClassName("text-popup");
-  for (let text of text_divs) {
-    text.style.display = "none";
-  }
-
-  for (let loc of Object.keys(data)) {
-    // let distance = haversine(current_coords, data[loc].coords);
-    let distance = map.distance(current_coords, data[loc].coords);
-    if (distance < limit) {
-    // if ((distance - radius) < limit) {
-      if (!data[loc].showed) {
-        // navigator.vibrate([200, 100, 200]);
+    for (let loc of Object.keys(data)) {
+      let distance = map.distance(pos.latlng, data[loc].coords);
+      if (distance < dist_limit) {
+        displayText(loc);
+        if (!data[loc].showed) {
+          // navigator.vibrate([200, 100, 200]);
+        }
+        data[loc].showed = true;
       }
-      let div = document.getElementById(loc);
-      div.style.display = "block";
-      data[loc].showed = true;
-
     }
   }
 }
 
+
+// function displayText(current_coords, radius) {
+//   let limit = 300000; // meters
+//   let text_divs = document.getElementsByClassName("text-popup");
+//   for (let text of text_divs) {
+//     text.style.display = "none";
+//   }
+//
+//   for (let loc of Object.keys(data)) {
+//     // let distance = haversine(current_coords, data[loc].coords);
+//     let distance = map.distance(current_coords, data[loc].coords);
+//     if (distance < limit) {
+//     // if ((distance - radius) < limit) {
+//       if (!data[loc].showed) {
+//         // navigator.vibrate([200, 100, 200]);
+//       }
+//       let div = document.getElementById(loc);
+//       div.style.display = "block";
+//       data[loc].showed = true;
+//
+//     }
+//   }
+// }
+
 function openCollectedText(elem) {
   let loc = elem.target.id.split("_").pop();
-  console.log(loc);
+  if (data[loc].showed) {
+    displayText(loc);
+  }
 }
 
 function buildTextGrid() {
