@@ -46,50 +46,71 @@ function initializeMap() {
     div.appendChild(title);
     let img = document.createElement("img");
     img.setAttribute("class", "text-image");
-    img.setAttribute("src", data[key].img);
+    img.setAttribute("src", `images/${data[key].img}`);
     div.appendChild(img);
     let p = document.createElement("p");
     p.innerHTML = data[key].text;
     div.appendChild(p);
     text_container.appendChild(div);
   }
+  buildTextGrid();
 }
 
 function updateMap(pos) {
-  let radius = pos.accuracy / 2;
-  map.removeLayer(current_marker);
-  map.removeLayer(circle);
-
-  current_marker = L.marker(pos.latlng).addTo(map);
-  circle = L.circle(pos.latlng, {radius: radius}, {
-  		color: 'blue',
-  		fillColor: 'rgb(86, 155, 227)',
-  		fillOpacity: 0.5
-  	}).addTo(map);
-  // map.setView(pos.latlng, 16);
-  displayText(pos.latlng, radius);
+  let radius = pos.accuracy / 2; // meters
+  if (radius < 200) {
+    map.removeLayer(current_marker);
+    map.removeLayer(circle);
+    current_marker = L.marker(pos.latlng).addTo(map);
+    circle = L.circle(pos.latlng, {radius: radius}, {
+        color: 'blue',
+        fillColor: 'rgb(86, 155, 227)',
+        fillOpacity: 0.5
+      }).addTo(map);
+    // map.setView(pos.latlng, 16);
+    // displayText(pos.latlng, radius);
+  }
 }
 
 
 function displayText(current_coords, radius) {
-  let limit = 30; // meters
+  let limit = 300000; // meters
   let text_divs = document.getElementsByClassName("text-popup");
   for (let text of text_divs) {
     text.style.display = "none";
   }
 
-  for (let key of Object.keys(data)) {
-    // let distance = haversine(current_coords, data[key].coords);
-    let distance = map.distance(current_coords, data[key].coords);
+  for (let loc of Object.keys(data)) {
+    // let distance = haversine(current_coords, data[loc].coords);
+    let distance = map.distance(current_coords, data[loc].coords);
     if (distance < limit) {
     // if ((distance - radius) < limit) {
-      if (!data[key].showed) {
-        navigator.vibrate([200, 100, 200]);
+      if (!data[loc].showed) {
+        // navigator.vibrate([200, 100, 200]);
       }
-      let div = document.getElementById(key);
+      let div = document.getElementById(loc);
       div.style.display = "block";
-      data[key].showed = true;
+      data[loc].showed = true;
+
     }
+  }
+}
+
+function openCollectedText(elem) {
+  let loc = elem.target.id.split("_").pop();
+  console.log(loc);
+}
+
+function buildTextGrid() {
+  let grid = document.getElementById("text_grid");
+  for (let loc of Object.keys(data)) {
+    let grid_item = document.createElement("div");
+    grid_item.setAttribute("class", "grid_item");
+    grid_item.setAttribute("id", `grid_item_${loc}`);
+    grid_item.setAttribute("name", loc);
+    grid_item.style["background-image"] = `url(images/${data[loc].img})`;
+    grid_item.addEventListener("click", openCollectedText);
+    grid.appendChild(grid_item);
   }
 }
 

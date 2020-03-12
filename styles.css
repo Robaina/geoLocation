@@ -1,6 +1,8 @@
 :root {
   --backgroundColor: rgb(6, 6, 6);
   --fancyColor: rgb(233, 221, 5);
+  --grid_item_margin: 5px;
+  --grid_item_border_width: 5px;
 }
 
 html, body {
@@ -59,6 +61,38 @@ img {
   margin-left: 10vw;
 }
 
+#text_grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 150px));
+  grid-auto-flow: row dense;
+  width: auto;
+  justify-content: center;
+  margin: 3vh;
+}
+.grid_item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: auto;
+  height: auto;
+  min-height: 100px;
+  padding: calc(0.2 * var(--grid_item_margin));
+  margin: var(--grid_item_margin);
+  border: var(--grid_item_border_width) solid rgb(75, 75, 75);
+  border-radius: 10px;
+  cursor: pointer;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+.grid_item:hover{
+  border: var(--grid_item_border_width) solid var(--fancyColor);
+}
+.grid_item:focus {
+  outline: none;
+}
+
 #text_container {
   width: 50vw;
   /* max-width: 600px; */
@@ -91,16 +125,16 @@ img {
 
 /* Scroll bar */
 ::-webkit-scrollbar {
-  width: 15px;
+  width: 10px;
   background-color: var(--backgroundColor);
 }
 ::-webkit-scrollbar-track {
   box-shadow: inset 0 0 0.25vw grey;
-  border-radius: 0.5vw;
+  border-radius: 10px;
 }
 ::-webkit-scrollbar-thumb {
   background: var(--fancyColor);
-  border-radius: 0.5vw;
+  border-radius: 10px;
 }
 ::-webkit-scrollbar-thumb:hover {
   background: var(--fancyColor);
