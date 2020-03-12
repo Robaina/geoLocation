@@ -10,7 +10,7 @@ function initializeMap() {
   });
   let loc_coords = Object.entries(data).map(entry => entry[1].coords);
   let map_center = L.polygon(loc_coords).getBounds().getCenter();
-  map.setView(map_center, min_zoom);
+  map.setView(map_center, 14.1);
   map.setMaxBounds(map.getBounds());
 
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
