@@ -9,6 +9,7 @@ function initializeMap() {
   let loc_coords = Object.entries(data).map(entry => entry[1].coords);
   let map_center = L.polygon(loc_coords).getBounds().getCenter();
   map.setView(map_center, 14.4);
+  map.setMaxBounds(map.getBounds());
 
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -39,26 +40,6 @@ function initializeMap() {
   });
   map.on('locationfound', updateMap);
 
-  // Create text divs
-  // let text_container = document.getElementById("text_container");
-  // for (let loc of Object.keys(data)) {
-  //   data[loc].showed = false;
-  //   let div = document.createElement("div");
-  //   div.setAttribute("class", "text-popup");
-  //   div.setAttribute("id", loc);
-  //   let title = document.createElement("h2");
-  //   title.setAttribute("class", "text-title");
-  //   title.innerHTML = data[loc].tag;
-  //   div.appendChild(title);
-  //   let img = document.createElement("img");
-  //   img.setAttribute("class", "text-image");
-  //   img.setAttribute("src", `images/${data[loc].img}`);
-  //   div.appendChild(img);
-  //   let p = document.createElement("p");
-  //   p.innerHTML = data[loc].text;
-  //   div.appendChild(p);
-  //   text_container.appendChild(div);
-  // }
   buildTextGrid();
 }
 
@@ -95,8 +76,8 @@ function updateMap(pos) {
       let distance = map.distance(pos.latlng, data[loc].coords);
       if (distance < dist_limit) {
         displayText(loc);
-        if (!data[loc].showed) {
-          // navigator.vibrate([200, 100, 200]);
+        if (!data[loc].showed && "vibrate" in navigator) {
+          navigator.vibrate([200, 100, 200]);
         }
         data[loc].showed = true;
       }
