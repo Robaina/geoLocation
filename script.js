@@ -1,4 +1,5 @@
 let map, current_marker, circle;
+let text_on_display = {};
 let markers = {};
 
 function initializeMap() {
@@ -31,6 +32,7 @@ function initializeMap() {
 
   for (let loc of Object.keys(data)) {
     data[loc].showed = false;
+    text_on_display[loc] = false;
     markers[loc] = L.marker(data[loc].coords, {icon: greenIcon}).addTo(map);
     markers[loc]._icon.style["filter"] = "grayscale(100%)";
   }
@@ -44,6 +46,11 @@ function initializeMap() {
   map.on('locationfound', updateMap);
 
   buildTextGrid();
+}
+
+function hideText() {
+  let div = document.getElementById("text_div");
+  div.innerHTML = "";
 }
 
 function displayText(loc) {
@@ -67,9 +74,17 @@ function is_mobile() {
 }
 
 function updateMap(pos) {
+  
+  for (let loc of Object.keys(data)) {
+    if (Object.values(text_on_display).every(value => value === false)) {
+      hideText();
+    }
+  }
+
   let accuracy_radius = pos.accuracy / 2; // meters
-  let dist_limit = 30; // meters
-  if (accuracy_radius < 100) {
+  let dist_limit = 1000; // meters
+  if (accuracy_radius < 1000000000) {
+
     map.removeLayer(current_marker);
     map.removeLayer(circle);
     current_marker = L.marker(pos.latlng).addTo(map);
@@ -78,18 +93,28 @@ function updateMap(pos) {
         fillColor: 'rgb(86, 155, 227)',
         fillOpacity: 0.5
       }).addTo(map);
+
     for (let loc of Object.keys(data)) {
+
       let distance = map.distance(pos.latlng, data[loc].coords);
-      if (distance < dist_limit && !data[loc].showed) {
+      if (distance < dist_limit && !text_on_display[loc]) {
+
         displayText(loc);
+
         if (is_mobile() && "vibrate" in navigator) {
           navigator.vibrate([200, 100, 200]);
         }
+
         data[loc].showed = true;
+        text_on_display[loc] = true;
         markers[loc]._icon.style["filter"] = "grayscale(0%)";
         let grid_item = document.getElementById(`grid_item_${loc}`);
         grid_item.style.display = "flex";
+
+       } else {
+         text_on_display[loc] = false;
       }
+
     }
   }
 }
