@@ -1,14 +1,16 @@
 let map, current_marker, circle;
+let markers = {};
 
 function initializeMap() {
 
+  let min_zoom = 14.2;
   map = L.map('map', {
-    minZoom: 14.5,
+    minZoom: min_zoom,
     zoomSnap: 0.1
   });
   let loc_coords = Object.entries(data).map(entry => entry[1].coords);
   let map_center = L.polygon(loc_coords).getBounds().getCenter();
-  map.setView(map_center, 14.4);
+  map.setView(map_center, min_zoom);
   map.setMaxBounds(map.getBounds());
 
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -29,12 +31,13 @@ function initializeMap() {
 
   for (let loc of Object.keys(data)) {
     data[loc].showed = false;
-    L.marker(data[loc].coords, {icon: greenIcon}).addTo(map);
+    markers[loc] = L.marker(data[loc].coords, {icon: greenIcon}).addTo(map);
+    markers[loc]._icon.style["filter"] = "grayscale(100%)";
   }
 
   map.locate({
     setView: false,
-    minZoom: 14.5,
+    minZoom: min_zoom,
     watch: true,
     enableHighAccuracy: true
   });
@@ -44,7 +47,7 @@ function initializeMap() {
 }
 
 function displayText(loc) {
-  let div = document.getElementById("text_container");
+  let div = document.getElementById("text_div");
   div.innerHTML = "";
   let title = document.createElement("h2");
   title.setAttribute("class", "text-title");
@@ -65,8 +68,8 @@ function is_mobile() {
 
 function updateMap(pos) {
   let accuracy_radius = pos.accuracy / 2; // meters
-  let dist_limit = 30000000; // meters
-  if (accuracy_radius < 1000000) {
+  let dist_limit = 30; // meters
+  if (accuracy_radius < 100) {
     map.removeLayer(current_marker);
     map.removeLayer(circle);
     current_marker = L.marker(pos.latlng).addTo(map);
@@ -75,7 +78,6 @@ function updateMap(pos) {
         fillColor: 'rgb(86, 155, 227)',
         fillOpacity: 0.5
       }).addTo(map);
-
     for (let loc of Object.keys(data)) {
       let distance = map.distance(pos.latlng, data[loc].coords);
       if (distance < dist_limit && !data[loc].showed) {
@@ -84,6 +86,7 @@ function updateMap(pos) {
           navigator.vibrate([200, 100, 200]);
         }
         data[loc].showed = true;
+        markers[loc]._icon.style["filter"] = "grayscale(0%)";
         let grid_item = document.getElementById(`grid_item_${loc}`);
         grid_item.style.display = "flex";
       }

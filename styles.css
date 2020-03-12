@@ -96,13 +96,18 @@ img {
 #text_container {
   width: 50vw;
   /* max-width: 600px; */
+  /* position: absolute; */
+  /* top: 60vh; */
+  /* left: 25vw; */
+  text-align: center;
+}
+#text_div {
+  width: 95%;
+  margin-left: auto;
+  text-align: justify;
   font-size: 1.3em;
   color: white;
   font-family: sans-serif;
-  /* position: absolute; */
-  top: 60vh;
-  left: 25vw;
-  text-align: justify;
 }
 
 .text-popup {

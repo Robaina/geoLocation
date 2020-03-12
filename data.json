@@ -37,8 +37,14 @@ data = {
   },
   "loc7": {
     "coords": [28.570509, -16.332885],
-    "tag": "Los charcos",
+    "tag": "Charco de Furnia",
     "text": "Este es uno de los lugares de baño habituales, tanto de locales como de foráneos. Las antiguas coladas de lava adoptan formas caprichosas, creando pequeños charcos y túneles submarinos. Uno de ellos escondió un horror de dimensiones inimaginables...",
-    "img": "piscina.jpg"
+    "img": "furnia.jpg"
+  },
+  "loc8": {
+    "coords": [28.578115, -16.323149],
+    "tag": "Charco La Arena",
+    "text": "Este fue sin duda la mejor piscina natural de La Punta, al menos hasta que construyeron esta aberración de club naútico. Privatizando el charco de forma totalmente ilegal.",
+    "img": "charco_la_arena.jpg"
   }
 }
