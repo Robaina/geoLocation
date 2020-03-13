@@ -3,7 +3,7 @@ let text_on_display = {};
 let markers = {};
 
 function initializeMap() {
-
+  const icons = {};
   let min_zoom = 14.2;
   map = L.map('map', {
     minZoom: min_zoom,
@@ -31,10 +31,24 @@ function initializeMap() {
   });
 
   for (let loc of Object.keys(data)) {
+
+    let icon = new L.Icon({
+      iconUrl: `images/${data[loc].img}`,
+      shadowUrl: 'images/marker-shadow.png',
+      iconSize: [25, 35],
+      iconAnchor: [12, 41],
+      popupAnchor: [1, -34],
+      shadowSize: [41, 41]
+    });
+
     data[loc].showed = false;
     text_on_display[loc] = false;
-    markers[loc] = L.marker(data[loc].coords, {icon: greenIcon}).addTo(map);
-    markers[loc]._icon.style["filter"] = "grayscale(100%)";
+    markers[loc] = L.marker(data[loc].coords, {icon: icon}).addTo(map);
+    markers[loc].on("click", openCollectedText);
+    markers[loc].id = `marker_${loc}`;
+    // markers[loc]._icon.style.filter = "grayscale(100%)";
+    markers[loc]._icon.classList.add("unselected_icon");
+
   }
 
   map.locate({
@@ -64,9 +78,9 @@ function displayText(loc) {
   img.setAttribute("class", "text-image");
   img.setAttribute("src", `images/${data[loc].img}`);
   div.appendChild(img);
-  let p = document.createElement("p");
-  p.innerHTML = data[loc].text;
-  div.appendChild(p);
+  let text = document.createElement("div");
+  text.innerHTML = data[loc].text;
+  div.appendChild(text);
 }
 
 function is_mobile() {
@@ -80,8 +94,8 @@ function updateMap(pos) {
   }
 
   let accuracy_radius = pos.accuracy / 2; // meters
-  let dist_limit = 1000; // meters
-  if (accuracy_radius < 1000000000) {
+  let dist_limit = 30; // meters
+  if (accuracy_radius < 100) {
 
     map.removeLayer(current_marker);
     map.removeLayer(circle);
@@ -105,7 +119,8 @@ function updateMap(pos) {
 
         data[loc].showed = true;
         text_on_display[loc] = true;
-        markers[loc]._icon.style["filter"] = "grayscale(0%)";
+        // markers[loc]._icon.style["filter"] = "grayscale(0%)";
+        markers[loc]._icon.classList.add("selected_icon");
         let grid_item = document.getElementById(`grid_item_${loc}`);
         grid_item.style.display = "flex";
 

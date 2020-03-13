@@ -1,6 +1,6 @@
 :root {
   --backgroundColor: rgb(6, 6, 6);
-  --fancyColor: rgb(233, 221, 5);
+  --fancyColor: rgb(5, 182, 233);
   --fontColor: rgb(255, 255, 255);
   --grid_item_margin: 5px;
   --grid_item_border_width: 5px;
@@ -38,8 +38,13 @@ a {
   filter: grayscale(0%);
 }
 
-img {
-  filter: grayscale(0%);
+.unselected_icon {
+  border: 2px solid rgb(75, 75, 75);
+  border-radius: 5px;
+}
+
+.selected_icon {
+  border: 5px solid var(--fancyColor);
 }
 
 #title {
