@@ -100,8 +100,8 @@ function updateMap(pos) {
   }
 
   let accuracy_radius = pos.accuracy / 2; // meters
-  let dist_limit = 1500; // meters
-  if (accuracy_radius < 1000000000) {
+  let dist_limit = 30; // meters
+  if (accuracy_radius < 100) {
 
     map.removeLayer(current_marker);
     map.removeLayer(circle);
