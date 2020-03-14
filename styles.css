@@ -139,6 +139,29 @@ a {
   border-radius: 10px;
 }
 
+.button {
+  padding: 1vmax;
+  font-size: 1.2em;
+  width: auto;
+  background-color: rgb(102, 102, 102);
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  margin: 1em 0em;
+  cursor: pointer;
+  border-radius: 1vmax;
+  user-select: none;
+  outline: none;
+  box-shadow: 0 0.5vmax rgb(221, 221, 221);
+  z-index: 2;
+}
+.button:active {
+  background-color: var(--fancyColor);
+  box-shadow: 0 0.3vmax rgb(102, 102, 102);
+  transform: translateY(4px);
+}
+
 #footer {
   display: none;
 }

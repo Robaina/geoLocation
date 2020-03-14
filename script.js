@@ -1,5 +1,6 @@
 let map, current_marker, circle;
 let text_on_display = {};
+let text_showed = {};
 let markers = {};
 
 function initializeMap() {
@@ -41,7 +42,7 @@ function initializeMap() {
       shadowSize: [41, 41]
     });
 
-    data[loc].showed = false;
+    text_showed[loc] = false;
     text_on_display[loc] = false;
     markers[loc] = L.marker(data[loc].coords, {icon: icon}).addTo(map);
     markers[loc].on("click", openCollectedText);
@@ -60,6 +61,11 @@ function initializeMap() {
   map.on('locationfound', updateMap);
 
   buildTextGrid();
+
+  // Remember visited places for future sessions
+  if ("visited_places" in localStorage) {
+    rememberVisitedPlaces();
+  }
 }
 
 function hideText() {
@@ -94,8 +100,8 @@ function updateMap(pos) {
   }
 
   let accuracy_radius = pos.accuracy / 2; // meters
-  let dist_limit = 30; // meters
-  if (accuracy_radius < 100) {
+  let dist_limit = 1500; // meters
+  if (accuracy_radius < 1000000000) {
 
     map.removeLayer(current_marker);
     map.removeLayer(circle);
@@ -113,16 +119,12 @@ function updateMap(pos) {
 
         displayText(loc);
 
-        if (is_mobile() && "vibrate" in navigator) {
+        if (is_mobile() && "vibrate" in navigator && !text_showed[loc]) {
           navigator.vibrate([200, 100, 200]);
         }
 
-        data[loc].showed = true;
+        text_showed[loc] = true;
         text_on_display[loc] = true;
-        // markers[loc]._icon.style["filter"] = "grayscale(0%)";
-        markers[loc]._icon.classList.add("selected_icon");
-        let grid_item = document.getElementById(`grid_item_${loc}`);
-        grid_item.style.display = "flex";
 
        } else {
          text_on_display[loc] = false;
@@ -130,11 +132,45 @@ function updateMap(pos) {
 
     }
   }
+
+  let showed_loc_str = Object.keys(text_showed).filter(key => text_showed[key]).join(",");
+  localStorage.setItem("visited_places", showed_loc_str);
+}
+
+function rememberVisitedPlaces() {
+  let visited_places = localStorage.getItem("visited_places").split(",");
+  for (let loc of visited_places) {
+    text_showed[loc] = true;
+  }
+  updateVisitedPlaces();
+}
+
+function updateVisitedPlaces() {
+  let visited_places = Object.keys(text_showed).filter(loc => text_showed[loc]);
+  for (let loc of visited_places) {
+    // markers[loc]._icon.style["filter"] = "grayscale(0%)";
+    markers[loc]._icon.classList.add("selected_icon");
+    let grid_item = document.getElementById(`grid_item_${loc}`);
+    grid_item.style.display = "flex";
+  }
+}
+
+function forgetVisitedPlaces() {
+  localStorage.removeItem("visited_places");
+  for (let loc of Object.keys(text_showed)) {
+    text_showed[loc] = false;
+    markers[loc]._icon.classList.remove("selected_icon");
+  }
+  hideText();
+  let grid_items = document.getElementsByClassName("grid_item");
+  for (let item of grid_items) {
+    item.style.display = "none";
+  }
 }
 
 function openCollectedText(elem) {
   let loc = elem.target.id.split("_").pop();
-  if (data[loc].showed) {
+  if (text_showed[loc]) {
     displayText(loc);
   }
 }
