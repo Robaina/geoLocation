@@ -13,18 +13,28 @@ function initializeIntro() {
 
 function openMenuSlider() {
   let menu_container = document.getElementById("menu_slider_container");
+  // menu_container.style.display = "block";
   menu_container.style["max-height"] = "40vh";
   let map_container = document.getElementById("map_container");
   map_container.style.height = "60vh";
   map.invalidateSize();
+  let menu_buttons = document.getElementsByClassName("menu_button");
+  for (let button of menu_buttons) {
+    button.style.display = "inline-block";
+  }
 }
 
 function closeMenuSlider() {
   let menu_container = document.getElementById("menu_slider_container");
   menu_container.style["max-height"] = "0vh";
+  // menu_container.style.display = "none";
   let map_container = document.getElementById("map_container");
   map_container.style.height = "100vh";
   map.invalidateSize();
+  let menu_buttons = document.getElementsByClassName("menu_button");
+  for (let button of menu_buttons) {
+    button.style.display = "none";
+  }
 }
 
 function displayAbout() {

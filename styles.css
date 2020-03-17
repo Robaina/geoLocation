@@ -70,6 +70,10 @@ a {
   height: 100%;
 }
 
+.menu_button {
+  display: none;
+}
+
 .button_container {
 
 }
