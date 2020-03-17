@@ -7,7 +7,7 @@
     <meta name="keywords" content="Geolocation, world, web development">
     <meta name="author" content="Semidán Robaina Estévez">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Horror en La Punta</title>
+    <title>Los pozos de La Fajana</title>
     <link rel="icon" type="image/png" href="earth.png">
     <script src="data.json"></script>
     <script src="leaflet.js"></script>
@@ -15,27 +15,49 @@
     <link rel="stylesheet" href="styles.css">
   </head>
 
-  <body onload="initializeMap()">
+  <body onload="initializeIntro()">
 
-    <div id="title">
-      <h1>El misterio de La Punta</h1>
+    <div id="intro_screen">
+      <div id="title"></div>
+      <div class="button_container">
+        <button class="button" onclick="startGame()">Comenzar</button>
+        <button class="button" onclick="displayAbout()">Acerca</button>
+      </div>
     </div>
 
-    <div id="map-container">
+    <div class="text_container" id="about_container">
+      <button class="close_button" onclick="closeAboutContainer()">X</button>
+      <article class="text_div" id="about"></article>
+    </div>
+
+    <div id="circle_menu" onclick="openMenuSlider()">
+      <div id="menu_outer_circle">
+        <div id="menu_inner_circle"></div>
+      </div>
+    </div>
+
+    <div id="menu_slider_container">
+      <button class="close_button" onclick="closeMenuSlider()">X</button>
+      <div id="menu_slider">
+        <button class="button" onclick="displayTextGrid()">Grid</button>
+        <button class="button" onclick="forgetVisitedPlaces()">Olvidar</button>
+      </div>
+    </div>
+
+    <div id="map_container">
       <div id="map"></div>
     </div>
 
-    <article id="text_container">
-      <div id="text_div"></div>
-    </article>
+    <div class="text_container" id="loc_text_container">
+      <button class="close_button" onclick="closeTextContainer()">X</button>
+      <article class="text_div" id="loc_text_div"></article>
+    </div>
 
     <div id="text_grid_container">
+      <button class="close_button" onclick="closeTextGrid()">X</button>
       <div id="text_grid_title">Lugares visitados</div>
       <div id="text_grid"></div>
     </div>
-
-    <button class="button" onclick="forgetVisitedPlaces()">Olvidar</button>
-
 
     <footer id="footer">
       <p><a href="https://semidanrobaina.com">Semidán Robaina Estévez</a>, 2020.</p>

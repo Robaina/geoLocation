@@ -1,5 +1,5 @@
 :root {
-  --backgroundColor: rgb(6, 6, 6);
+  --backgroundColor: rgb(23, 23, 23);
   --fancyColor: rgb(5, 182, 233);
   --fontColor: rgb(255, 255, 255);
   --grid_item_margin: 5px;
@@ -19,15 +19,71 @@ a {
   color: var(--fancyColor);
 }
 
-#map-container {
-  text-align: center;
-  /* top: 20vh; */
-  /* right: 0;
-  bottom: 0;
-  left: 0vw; */
+#menu {
+  display: none;
+}
+
+#circle_menu {
+  position: absolute;
+  top: 85vh;
+  left: calc(50vw - 25px);
+  display: none;
+  cursor: pointer;
+  background-color: transparent;
+  opacity: 75%;
+  z-index: 1;
+  -webkit-tap-highlight-color:  rgba(255, 255, 255, 0);
+}
+
+#menu_outer_circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border: 10px solid var(--fancyColor);
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: transparent;
+}
+#menu_inner_circle {
+  width: 85%;
+  height: 85%;
+  border-radius: 50%;
+  background-color: var(--backgroundColor);
+}
+
+#menu_slider_container {
   width: 100vw;
-  height: 45vh;
-  /* position: absolute !important; */
+  height: 40vh;
+  max-height: 0vh;
+  position: absolute;
+  transition: max-height .3s ease-out;
+  bottom: 0;
+  z-index: 2;
+}
+#menu_slider {
+  position: relative;
+  top: 0%;
+  background: var(--backgroundColor);
+  width: 100vw;
+  height: 100%;
+}
+
+.button_container {
+
+}
+
+#about {
+  padding-top: 10vh;
+}
+
+#map_container {
+  text-align: center;
+  width: 100vw;
+  height: 100vh;
+  display: none;
+  padding-top: 0vh;
 }
 
 #map {
@@ -44,19 +100,23 @@ a {
 }
 
 .selected_icon {
-  border: 5px solid var(--fancyColor);
+  border: 2px solid var(--fancyColor);
+  border-radius: 5px;
+}
+
+#intro_screen {
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--backgroundColor);
+  display: block;
 }
 
 #title {
   width: 100vw;
   height: 10vh;
-  margin-top: 5vh;
-  margin-bottom: 5vh;
-  /* top: 5vh; */
+  padding-top: 30vh;
+  margin-bottom: 0vh;
   text-align: center;
-  /* margin-top: 5vh; */
-  /* position: absolute; */
-  z-index: 2 !important;
 }
 #title > h1 {
   color: var(--fontColor);
@@ -68,14 +128,22 @@ a {
 }
 
 #text_grid_container {
+  position: absolute;
+  top: 0;
   width: 100vw;
+  height: 100vh;
   text-align: center;
+  display: none;
+  background-color: var(--backgroundColor);
+  z-index: 3;
 }
 
 #text_grid_title {
   color: var(--fontColor);
   font-family: sans-serif;
   font-size: 2em;
+  padding-top: 5vh;
+  padding-bottom: 3vh;
 }
 
 #text_grid {
@@ -87,7 +155,7 @@ a {
   margin: auto;
 }
 .grid_item {
-  display: none;
+  display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
@@ -103,23 +171,31 @@ a {
   background-position: center center;
   background-repeat: no-repeat;
 }
-.grid_item:hover{
+.active_grid_item:hover{
   border: var(--grid_item_border_width) solid var(--fancyColor);
 }
 .grid_item:focus {
   outline: none;
 }
 
-#text_container {
-  display: inline-block;
-  width: 100vw;
-  /* max-width: 600px; */
-  /* position: absolute; */
-  /* top: 60vh; */
-  /* left: 25vw; */
-  text-align: center;
+.grid_lock_image {
+  width: 80%;
+  display: block;
+  object-fit: cover;
+  filter:opacity(70%);
 }
-#text_div {
+
+.text_container {
+  position: absolute;
+  top: 0;
+  display: none;
+  width: 100vw;
+  height: 100vh;
+  text-align: center;
+  background-color: var(--backgroundColor);
+  z-index: 4;
+}
+.text_div {
   position: relative;
   width: 60%;
   margin: auto;
@@ -129,14 +205,39 @@ a {
   font-family: sans-serif;
 }
 
-.text-title {
+.text_title {
+  margin-top: 0;
+  padding-top: 5vh;
   text-align: center;
 }
 
-.text-image {
+.text_image {
   width: 100%;
   min-width: 200px;
   border-radius: 10px;
+}
+
+.close_button {
+  position: absolute;
+  top: 5%;
+  left: 90%;
+  width: 8vw;
+  height: 8vw;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 1vmax;
+  user-select: none;
+  outline: none;
+  box-shadow: 0 0.5vmax rgb(221, 221, 221);
+  background-color: rgb(102, 102, 102);
+  color: var(--fancyColor);
+  z-index: 2 !important;
+}
+.close_button:active {
+  background-color: var(--fancyColor);
+  box-shadow: 0 0.3vmax rgb(102, 102, 102);
+  transform: translateY(4px);
 }
 
 .button {
@@ -190,11 +291,11 @@ a {
     font-size: 2em;
   }
 
-  #text_container {
+  .text_container {
     width: 100vw;
   }
 
-  #text_div {
+  .text_div {
     width: 90%;
   }
 
