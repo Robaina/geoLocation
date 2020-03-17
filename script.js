@@ -36,16 +36,16 @@ function closeMenuSlider() {
 }
 
 function displayAboutContainer() {
-  let intro_screen = document.getElementById("intro_screen");
-  intro_screen.style.display = "none";
+  // let intro_screen = document.getElementById("intro_screen");
+  // intro_screen.style.display = "none";
   let about_container = document.getElementById("about_container");
   about_container.style.display = "block";
   about_container.getElementsByTagName("article")[0].innerHTML = data.about;
 }
 
 function closeAboutContainer() {
-  let intro_screen = document.getElementById("intro_screen");
-  intro_screen.style.display = "block";
+  // let intro_screen = document.getElementById("intro_screen");
+  // intro_screen.style.display = "block";
   let about_container = document.getElementById("about_container");
   about_container.style.display = "none";
 }

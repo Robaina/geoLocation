@@ -19,10 +19,7 @@
 
     <div id="intro_screen">
       <div id="title"></div>
-      <div class="button_container">
-        <button class="button" onclick="startGame()">Comenzar</button>
-        <button class="button" onclick="displayAboutContainer()">Acerca</button>
-      </div>
+      <button class="fancy_button" id="start_button" onclick="startGame()">Comenzar</button>
     </div>
 
     <div class="text_container" id="about_container">
@@ -37,10 +34,17 @@
     </div>
 
     <div id="menu_slider_container">
-      <button class="close_button menu_button" onclick="closeMenuSlider()">X</button>
+      <button class="close_button" onclick="closeMenuSlider()">X</button>
       <div id="menu_slider">
-        <button class="button menu_button" onclick="displayTextGrid()">Grid</button>
-        <button class="button menu_button" onclick="forgetVisitedPlaces()">Olvidar</button>
+        <!-- <button class="button menu_button" onclick="displayTextGrid()">Grid</button>
+        <button class="button menu_button" onclick="forgetVisitedPlaces()">Olvidar</button> -->
+        <div class="button_container">
+          <button class="fancy_button" id="reset_button" onclick="forgetVisitedPlaces()">Reset</button>
+          <button class="fancy_button" onclick="displayAboutContainer()">Info</button>
+        </div>
+        <div id="text_grid_title">Lugares visitados</div>
+        <div id="text_grid"></div>
+
       </div>
     </div>
 
@@ -53,11 +57,11 @@
       <article class="text_div" id="loc_text_div"></article>
     </div>
 
-    <div id="text_grid_container">
+    <!-- <div id="text_grid_container">
       <button class="close_button" onclick="closeTextGrid()">X</button>
       <div id="text_grid_title">Lugares visitados</div>
       <div id="text_grid"></div>
-    </div>
+    </div> -->
 
     <footer id="footer">
       <p><a href="https://semidanrobaina.com">Semidán Robaina Estévez</a>, 2020.</p>
