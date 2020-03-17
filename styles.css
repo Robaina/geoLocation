@@ -1,5 +1,5 @@
 :root {
-  --backgroundColor: rgb(23, 23, 23);
+  --backgroundColor: rgb(47, 47, 47);
   --fancyColor: rgb(5, 182, 233);
   --fontColor: rgb(255, 255, 255);
   --grid_item_margin: 5px;
@@ -353,7 +353,7 @@ a {
 @media only screen and (max-width: 600px) {
 
   #title > h1 {
-    font-size: 2em;
+    font-size: 2.5em;
   }
 
   .text_container {
