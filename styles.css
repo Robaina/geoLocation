@@ -224,7 +224,7 @@ a {
 .close_button {
   position: absolute;
   top: 5%;
-  left: 90%;
+  left: 88%;
   width: 8vw;
   height: 8vw;
   text-align: center;
@@ -233,16 +233,19 @@ a {
   border-radius: 1vmax;
   user-select: none;
   outline: none;
-  box-shadow: 0 0.5vmax rgb(221, 221, 221);
-  background-color: rgb(102, 102, 102);
-  color: var(--fancyColor);
+  border: 2px solid var(--fancyColor);
+  padding: 0;
+  /* box-shadow: 0 0.5vmax rgb(221, 221, 221); */
+  background-color: transparent;
+  font-size: 1.5em;
+  color: rgb(167, 167, 167);
   z-index: 2 !important;
 }
-.close_button:active {
+/* .close_button:active {
   background-color: var(--fancyColor);
   box-shadow: 0 0.3vmax rgb(102, 102, 102);
   transform: translateY(4px);
-}
+} */
 
 .button {
   padding: 1vmax;

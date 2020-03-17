@@ -13,7 +13,6 @@ function initializeIntro() {
 
 function openMenuSlider() {
   let menu_container = document.getElementById("menu_slider_container");
-  // menu_container.style.display = "block";
   menu_container.style["max-height"] = "40vh";
   let map_container = document.getElementById("map_container");
   map_container.style.height = "60vh";
@@ -27,7 +26,6 @@ function openMenuSlider() {
 function closeMenuSlider() {
   let menu_container = document.getElementById("menu_slider_container");
   menu_container.style["max-height"] = "0vh";
-  // menu_container.style.display = "none";
   let map_container = document.getElementById("map_container");
   map_container.style.height = "100vh";
   map.invalidateSize();
@@ -37,7 +35,7 @@ function closeMenuSlider() {
   }
 }
 
-function displayAbout() {
+function displayAboutContainer() {
   let intro_screen = document.getElementById("intro_screen");
   intro_screen.style.display = "none";
   let about_container = document.getElementById("about_container");
@@ -55,33 +53,31 @@ function closeAboutContainer() {
 function closeTextContainer() {
   let loc_text_container = document.getElementById("loc_text_container");
   loc_text_container.style.display = "none";
-  let map_container = document.getElementById("map_container");
-  map_container.style.display = "block";
+  // let map_container = document.getElementById("map_container");
+  // map_container.style.display = "block";
   hideText();
 }
 
 function displayTextContainer(loc) {
   let loc_text_container = document.getElementById("loc_text_container");
   loc_text_container.style.display = "block";
-  let map_container = document.getElementById("map_container");
-  map_container.style.display = "none";
-  // let text_grid_container = document.getElementById("text_grid_container");
-  // text_grid_container.style.display = "none";
+  // let map_container = document.getElementById("map_container");
+  // map_container.style.display = "none";
   displayText(loc);
 }
 
 function closeTextGrid() {
   let text_grid_container = document.getElementById("text_grid_container");
   text_grid_container.style.display = "none";
-  let map_container = document.getElementById("map_container");
-  map_container.style.display = "block";
+  // let map_container = document.getElementById("map_container");
+  // map_container.style.display = "block";
 }
 
 function displayTextGrid() {
   let text_grid_container = document.getElementById("text_grid_container");
   text_grid_container.style.display = "block";
-  let map_container = document.getElementById("map_container");
-  map_container.style.display = "none";
+  // let map_container = document.getElementById("map_container");
+  // map_container.style.display = "none";
 }
 
 function openFullscreen() {
