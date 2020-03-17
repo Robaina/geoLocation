@@ -6,6 +6,7 @@ const min_zoom = 14.5;
 
 
 function initializeIntro() {
+  openFullscreen();
   let title_div = document.getElementById("title");
   title_div.innerHTML = `<h1>${data.title}</h1>`;
 }
@@ -71,6 +72,19 @@ function displayTextGrid() {
   text_grid_container.style.display = "block";
   let map_container = document.getElementById("map_container");
   map_container.style.display = "none";
+}
+
+function openFullscreen() {
+  let elem = document.documentElement;
+  if (elem.requestFullscreen) {
+    elem.requestFullscreen();
+  } else if (elem.mozRequestFullScreen) {
+    elem.mozRequestFullScreen();
+  } else if (elem.webkitRequestFullscreen) {
+    elem.webkitRequestFullscreen();
+  } else if (elem.msRequestFullscreen) {
+    elem.msRequestFullscreen();
+  }
 }
 
 function startGame() {
