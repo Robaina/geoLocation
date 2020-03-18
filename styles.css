@@ -20,8 +20,8 @@ a {
 }
 
 .fullscreen {
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   background-color: var(--backgroundColor);
   display: block;
   text-align: center;
@@ -33,8 +33,8 @@ a {
 }
 
 #intro_screen {
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   background-color: var(--backgroundColor);
   display: block;
   text-align: center;
@@ -42,7 +42,7 @@ a {
 }
 
 #title {
-  width: 100vw;
+  width: 100%;
   height: 10vh;
   padding-top: 30vh;
   margin-bottom: 0vh;
@@ -107,7 +107,7 @@ a {
 }
 
 #menu_slider_container {
-  width: 100vw;
+  width: 100%;
   height: 40vh;
   max-height: 0vh;
   position: absolute;
@@ -141,8 +141,8 @@ a {
 
 #map_container {
   text-align: center;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   display: none;
   padding-top: 0vh;
 }
@@ -366,7 +366,7 @@ a {
   }
 
   .text_container {
-    width: 100vw;
+    width: 100%;
   }
 
   .text_div {
