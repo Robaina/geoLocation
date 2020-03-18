@@ -6,7 +6,6 @@ const min_zoom = 14.5;
 
 
 function initializeIntro() {
-  openFullscreen();
   let title_div = document.getElementById("title");
   title_div.innerHTML = `<h1>${data.title}</h1>`;
 }
@@ -90,6 +89,7 @@ function openFullscreen() {
 }
 
 function startGame() {
+  openFullscreen();
   let intro_screen = document.getElementById("intro_screen");
   intro_screen.style.display = "none";
   let map_container = document.getElementById("map_container");
