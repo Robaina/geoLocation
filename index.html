@@ -17,9 +17,13 @@
 
   <body onload="initializeIntro()">
 
-    <div id="intro_screen">
+    <div class="fullscreen" id="intro_screen">
       <div id="title"></div>
       <button class="fancy_button" id="start_button" onclick="startGame()">Comenzar</button>
+    </div>
+
+    <div class="fullscreen" id="exit_screen">
+
     </div>
 
     <div class="text_container" id="about_container">
@@ -27,11 +31,11 @@
       <article class="text_div" id="about"></article>
     </div>
 
-    <div id="circle_menu" onclick="openMenuSlider()">
+    <!-- <div id="circle_menu" onclick="openMenuSlider()">
       <div id="menu_outer_circle">
         <div id="menu_inner_circle"></div>
       </div>
-    </div>
+    </div> -->
 
     <div id="menu_slider_container">
       <!-- <button class="close_button" onclick="closeMenuSlider()">X</button> -->
@@ -52,6 +56,13 @@
 
     <div id="map_container">
       <div id="map"></div>
+
+      <div id="circle_menu" onclick="openMenuSlider()">
+        <div id="menu_outer_circle">
+          <div id="menu_inner_circle"></div>
+        </div>
+      </div>
+
     </div>
 
     <div class="text_container" id="loc_text_container">

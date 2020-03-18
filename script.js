@@ -16,7 +16,13 @@ function exitGame() {
       document.msExitFullscreen();
   }
 
+  let intro_screen = document.getElementById("intro_screen");
+  intro_screen.style.display = "block";
 
+  closeAboutContainer();
+  closeTextContainer();
+  closeMenuSlider();
+  closeMapContainer();
 }
 
 function initializeIntro() {
@@ -48,6 +54,18 @@ function closeMenuSlider() {
   }
 }
 
+function displayMapContainer() {
+  let map_container = document.getElementById("map_container");
+  map_container.style.display = "block";
+}
+
+function closeMapContainer() {
+  let map_container = document.getElementById("map_container");
+  map.off();
+  map.remove();
+  map_container.style.display = "none";
+}
+
 function displayAboutContainer() {
   let about_container = document.getElementById("about_container");
   about_container.style.display = "block";
@@ -62,31 +80,23 @@ function closeAboutContainer() {
 function closeTextContainer() {
   let loc_text_container = document.getElementById("loc_text_container");
   loc_text_container.style.display = "none";
-  // let map_container = document.getElementById("map_container");
-  // map_container.style.display = "block";
   hideText();
 }
 
 function displayTextContainer(loc) {
   let loc_text_container = document.getElementById("loc_text_container");
   loc_text_container.style.display = "block";
-  // let map_container = document.getElementById("map_container");
-  // map_container.style.display = "none";
   displayText(loc);
 }
 
 function closeTextGrid() {
   let text_grid_container = document.getElementById("text_grid_container");
   text_grid_container.style.display = "none";
-  // let map_container = document.getElementById("map_container");
-  // map_container.style.display = "block";
 }
 
 function displayTextGrid() {
   let text_grid_container = document.getElementById("text_grid_container");
   text_grid_container.style.display = "block";
-  // let map_container = document.getElementById("map_container");
-  // map_container.style.display = "none";
 }
 
 function openFullscreen() {
@@ -212,10 +222,6 @@ function is_mobile() {
 }
 
 function updateMap(pos) {
-
-  // if (Object.values(text_on_display).every(value => value === false)) {
-  //   hideText();
-  // }
 
   let accuracy_radius = pos.accuracy / 2; // meters
   let dist_limit = 1500; // meters

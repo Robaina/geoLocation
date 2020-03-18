@@ -19,12 +19,26 @@ a {
   color: var(--fancyColor);
 }
 
+.fullscreen {
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--backgroundColor);
+  display: block;
+  text-align: center;
+  overflow-y: hidden;
+}
+
+#exit_screen {
+  display: none;
+}
+
 #intro_screen {
   width: 100vw;
   height: 100vh;
   background-color: var(--backgroundColor);
   display: block;
   text-align: center;
+  overflow-y: hidden;
 }
 
 #title {
