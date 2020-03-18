@@ -311,17 +311,20 @@ function openCollectedText(elem) {
 
 function buildTextGrid() {
   let grid = document.getElementById("text_grid");
-  for (let loc of Object.keys(data.loc_data)) {
-    let grid_item = document.createElement("div");
-    grid_item.setAttribute("class", "grid_item");
-    grid_item.setAttribute("id", `grid_item_${loc}`);
-    grid_item.setAttribute("name", loc);
-    grid_item.style["background-image"] = `url(images/${data.loc_data[loc].img})`;
-    grid_item.addEventListener("click", openCollectedText);
-    let img = document.createElement("img");
-    img.setAttribute("class", "grid_lock_image");
-    img.setAttribute("src", "images/lock.png");
-    grid_item.appendChild(img);
-    grid.appendChild(grid_item);
+  if (grid.childNodes.length === 0) {
+    for (let loc of Object.keys(data.loc_data)) {
+      let grid_item = document.createElement("div");
+      grid_item.setAttribute("class", "grid_item");
+      grid_item.setAttribute("id", `grid_item_${loc}`);
+      grid_item.setAttribute("name", loc);
+      grid_item.style["background-image"] = `url(images/${data.loc_data[loc].img})`;
+      grid_item.addEventListener("click", openCollectedText);
+      let img = document.createElement("img");
+      img.setAttribute("class", "grid_lock_image");
+      img.setAttribute("src", "images/lock.png");
+      grid_item.appendChild(img);
+      grid.appendChild(grid_item);
+    }
   }
+
 }
