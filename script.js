@@ -4,6 +4,20 @@ let text_showed = {};
 let markers = {};
 const min_zoom = 14.5;
 
+function exitGame() {
+
+  if (document.exitFullscreen) {
+      document.exitFullscreen();
+  } else if (document.webkitExitFullscreen) {
+      document.webkitExitFullscreen();
+  } else if (document.mozCancelFullScreen) {
+      document.mozCancelFullScreen();
+  } else if (document.msExitFullscreen) {
+      document.msExitFullscreen();
+  }
+
+
+}
 
 function initializeIntro() {
   let title_div = document.getElementById("title");
@@ -199,9 +213,9 @@ function is_mobile() {
 
 function updateMap(pos) {
 
-  if (Object.values(text_on_display).every(value => value === false)) {
-    hideText();
-  }
+  // if (Object.values(text_on_display).every(value => value === false)) {
+  //   hideText();
+  // }
 
   let accuracy_radius = pos.accuracy / 2; // meters
   let dist_limit = 1500; // meters
