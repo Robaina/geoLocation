@@ -157,7 +157,7 @@ function openFullscreen() {
 }
 
 function startGame() {
-  // openFullscreen();
+  openFullscreen();
   let intro_screen = document.getElementById("intro_screen");
   intro_screen.style.display = "none";
   let map_container = document.getElementById("map_container");
