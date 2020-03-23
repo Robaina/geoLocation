@@ -66,10 +66,54 @@ function closeMapContainer() {
   map_container.style.display = "none";
 }
 
+function typeElementText(text_html, elem_id, time_delay=60) {
+  let i = 0;
+  let type_time_delay;
+  let text = text_html.replace(/<\/p>/g, "");
+  let added_txt = "";
+  let innerHTML = "";
+
+  function setSpeedAtPunctuationMark(str) {
+    let previous_char = str.slice(-2, -1);
+    if (previous_char === "," || previous_char === ";") {
+      type_time_delay = 7 * time_delay;
+    } else if (previous_char === ".") {
+      type_time_delay = 15 * time_delay;
+    } else {
+      type_time_delay = time_delay;
+    }
+  }
+
+  function typeWriter() {
+    innerHTML = innerHTML.replace(/<\/p>/g, "");
+    if (i < text.length) {
+      if (text.slice(i, i+3) === "<p>") {
+        added_txt = "<p>";
+        i += 2;
+      } else if (text.slice(i, i+3) === "...") {
+        added_txt = "...";
+        i += 2;
+      } else {
+        added_txt = text.charAt(i);
+      }
+      innerHTML += added_txt + "</p>";
+      document.getElementById(elem_id).innerHTML = innerHTML;
+      i++;
+      if (i > 0) {
+        setSpeedAtPunctuationMark(innerHTML.replace("</p>", ""));
+      }
+      setTimeout(typeWriter, type_time_delay);
+    }
+  }
+  typeWriter();
+
+}
+
 function displayAboutContainer() {
   let about_container = document.getElementById("about_container");
   about_container.style.display = "block";
-  about_container.getElementsByTagName("article")[0].innerHTML = data.about;
+  typeElementText(data.about, "about", time_delay=50);
+  // document.getElementById("about").innerHTML = data.about;
 }
 
 function closeAboutContainer() {
@@ -113,7 +157,7 @@ function openFullscreen() {
 }
 
 function startGame() {
-  openFullscreen();
+  // openFullscreen();
   let intro_screen = document.getElementById("intro_screen");
   intro_screen.style.display = "none";
   let map_container = document.getElementById("map_container");
