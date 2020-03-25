@@ -15,42 +15,44 @@
     <link rel="stylesheet" href="styles.css">
   </head>
 
-  <body onload="initializeIntro()">
+  <body onload="initializeGame()">
 
     <div class="fullscreen" id="intro_screen">
-      <div id="title"></div>
-      <button class="fancy_button" id="start_button" onclick="startGame()">Comenzar</button>
+      <div class="fullscreen_title" id="intro_title"></div>
+      <button class="fancy_button" id="start_button" onclick="openIntro()">Comenzar</button>
     </div>
 
     <div class="fullscreen" id="exit_screen">
+      <div class="fullscreen_title" id="exit_title"><h1>¡Hasta pronto!</h1></div>
+      <button class="fancy_button" id="save_button" onclick="exitGame(save=true)">Guardar</button>
+      <button class="fancy_button" id="start_button" onclick="exitGame(save=false)">Cancelar</button>
 
     </div>
 
     <div class="text_container" id="about_container">
-      <button class="close_button" onclick="closeAboutContainer()">X</button>
-      <article class="text_div" id="about"></article>
+
+      <div class="div_content_container">
+        <div class="div_content_wrap">
+          <article class="text_div" id="about"></article>
+        </div>
+        <div class="div_footer">
+          <button class="fancy_button" id="continue_button" onclick="startGame()">Continue</button>
+        </div>
+      </div>
+      <button class="close_button" id="close_about_button" onclick="closeAboutContainer()">X</button>
+
     </div>
 
-    <!-- <div id="circle_menu" onclick="openMenuSlider()">
-      <div id="menu_outer_circle">
-        <div id="menu_inner_circle"></div>
-      </div>
-    </div> -->
-
     <div id="menu_slider_container">
-      <!-- <button class="close_button" onclick="closeMenuSlider()">X</button> -->
       <div id="menu_slider">
         <button class="close_button" onclick="closeMenuSlider()">X</button>
-        <!-- <button class="button menu_button" onclick="displayTextGrid()">Grid</button>
-        <button class="button menu_button" onclick="forgetVisitedPlaces()">Olvidar</button> -->
         <div class="button_container">
           <button class="fancy_button" id="reset_button" onclick="forgetVisitedPlaces()">Reset</button>
-          <button class="fancy_button" onclick="displayAboutContainer()">Info</button>
-          <button class="fancy_button" onclick="exitGame()">Salir</button>
+          <!-- <button class="fancy_button" onclick="displayAboutContainer()">Info</button> -->
+          <button class="fancy_button" onclick="openExitWindow()">Salir</button>
         </div>
         <div id="text_grid_title">Lugares visitados</div>
         <div id="text_grid"></div>
-
       </div>
     </div>
 
@@ -69,12 +71,6 @@
       <button class="close_button" onclick="closeTextContainer()">X</button>
       <article class="text_div" id="loc_text_div"></article>
     </div>
-
-    <!-- <div id="text_grid_container">
-      <button class="close_button" onclick="closeTextGrid()">X</button>
-      <div id="text_grid_title">Lugares visitados</div>
-      <div id="text_grid"></div>
-    </div> -->
 
     <footer id="footer">
       <p><a href="https://semidanrobaina.com">Semidán Robaina Estévez</a>, 2020.</p>

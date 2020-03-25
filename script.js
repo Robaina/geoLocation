@@ -2,10 +2,10 @@ let map, current_marker, circle;
 let text_on_display = {};
 let text_showed = {};
 let markers = {};
+let typewriter_time, continue_button_time;
 const min_zoom = 14.5;
 
-function exitGame() {
-
+function exitGame(save=true) {
   if (document.exitFullscreen) {
       document.exitFullscreen();
   } else if (document.webkitExitFullscreen) {
@@ -15,18 +15,28 @@ function exitGame() {
   } else if (document.msExitFullscreen) {
       document.msExitFullscreen();
   }
+  if (!save) {
+    forgetVisitedPlaces();
+  }
+  let exit_screen = document.getElementById("exit_screen");
+  exit_screen.style.display = "none";
+  initializeGame();
+}
 
-  let intro_screen = document.getElementById("intro_screen");
-  intro_screen.style.display = "block";
-
+function openExitWindow() {
+  let exit_screen = document.getElementById("exit_screen");
+  exit_screen.style.display = "block";
   closeAboutContainer();
   closeTextContainer();
   closeMenuSlider();
   closeMapContainer();
 }
 
-function initializeIntro() {
-  let title_div = document.getElementById("title");
+function initializeGame() {
+  let intro_screen = document.getElementById("intro_screen");
+  intro_screen.style.display = "block";
+  intro_screen.style.opacity = 1;
+  let title_div = document.getElementById("intro_title");
   title_div.innerHTML = `<h1>${data.title}</h1>`;
 }
 
@@ -102,7 +112,7 @@ function typeElementText(text_html, elem_id, time_delay=60) {
       if (i > 0) {
         setSpeedAtPunctuationMark(innerHTML.replace("</p>", ""));
       }
-      setTimeout(typeWriter, type_time_delay);
+      typewriter_time = setTimeout(typeWriter, type_time_delay);
     }
   }
   typeWriter();
@@ -112,8 +122,14 @@ function typeElementText(text_html, elem_id, time_delay=60) {
 function displayAboutContainer() {
   let about_container = document.getElementById("about_container");
   about_container.style.display = "block";
+  about_container.addEventListener("click", function() {
+    document.getElementById("about").innerHTML = data.about;
+    document.getElementById("continue_button").style.display = "block";
+    document.getElementById("continue_button").style.opacity = 1;
+    clearTimeout(typewriter_time);
+    clearTimeout(continue_button_time);
+  });
   typeElementText(data.about, "about", time_delay=50);
-  // document.getElementById("about").innerHTML = data.about;
 }
 
 function closeAboutContainer() {
@@ -156,20 +172,49 @@ function openFullscreen() {
   }
 }
 
-function startGame() {
+function openIntro() {
   openFullscreen();
   let intro_screen = document.getElementById("intro_screen");
-  intro_screen.style.display = "none";
-  let map_container = document.getElementById("map_container");
-  map_container.style.display = "block";
-  let menu = document.getElementById("circle_menu");
-  menu.style.display = "block";
-  initializeMap();
-  buildTextGrid();
-  if ("visited_places" in localStorage) {
+  intro_screen.style.opacity = 0;
+  let about_close_button = document.getElementById("close_about_button");
+  about_close_button.style.display = "none";
+  let continue_button = document.getElementById("continue_button");
+
+  setTimeout(function() {
+    displayAboutContainer();
+    intro_screen.style.display = "none";
+  }, 3000);
+  continue_button_time = setTimeout(function() {
+    continue_button.style.display = "block";
+    continue_button.style.opacity = 1;
+  }, 10000);
+
+}
+
+function startGame() {
+  // openFullscreen();
+  let about = document.getElementById("about_container");
+  about.style.opacity = 0;
+  setTimeout(function() {
+    about.style.display = "none";
+    let map_container = document.getElementById("map_container");
+    map_container.style.display = "block";
+    map_container.style.opacity = 1;
+    let menu = document.getElementById("circle_menu");
+    menu.style.display = "block";
+    initializeMap();
+    buildTextGrid();
     rememberVisitedPlaces();
+    updateVisitedPlaces();
+  }, 500);
+}
+
+function requestGeolocationPermision() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(pos => "");
+  } else {
+    alert("Lo siento, parece que tu dispositivo no soporta geolocalización...");
   }
-  updateVisitedPlaces();
 }
 
 function initializeMap() {
@@ -179,11 +224,14 @@ function initializeMap() {
     zoomSnap: 0.1,
     zoomControl: false
   });
-  new L.Control.Zoom({ position: 'topright' }).addTo(map);
+  map.setView([0, 0], 20);
+  new L.Control.Zoom({position: 'topleft'}).addTo(map);
 
   let loc_coords = Object.entries(data.loc_data).map(entry => entry[1].coords);
   let map_center = L.polygon(loc_coords).getBounds().getCenter();
-  map.setView(map_center, min_zoom + 0.1);
+  // map.setView(map_center, min_zoom + 0.1);
+  setTimeout(() => map.flyTo(map_center, min_zoom + 0.1), 5000);
+  // map.flyTo(map_center, min_zoom + 0.1);
   map.setMaxBounds(map.getBounds());
 
   let tile_urls = {
@@ -195,8 +243,6 @@ function initializeMap() {
   L.tileLayer(tile_urls.blackandwhite, {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
-
-
 
   current_marker = L.marker([0, 0]).addTo(map);
   circle = L.circle([0, 0], {radius: 1}).addTo(map);
@@ -307,11 +353,13 @@ function updateMap(pos) {
 }
 
 function rememberVisitedPlaces() {
-  let visited_places = localStorage.getItem("visited_places").split(",");
-  for (let loc of visited_places) {
-    text_showed[loc] = true;
+  if ("visited_places" in localStorage) {
+    let visited_places = localStorage.getItem("visited_places").split(",");
+    for (let loc of visited_places) {
+      text_showed[loc] = true;
+    }
+    updateVisitedPlaces();
   }
-  updateVisitedPlaces();
 }
 
 function updateVisitedPlaces() {
@@ -337,13 +385,15 @@ function updateVisitedPlaces() {
 }
 
 function forgetVisitedPlaces() {
-  localStorage.removeItem("visited_places");
-  for (let loc of Object.keys(text_showed)) {
-    text_showed[loc] = false;
-    markers[loc]._icon.classList.remove("selected_icon");
+  if ("visited_places" in localStorage) {
+    localStorage.removeItem("visited_places");
+    for (let loc of Object.keys(text_showed)) {
+      text_showed[loc] = false;
+      markers[loc]._icon.classList.remove("selected_icon");
+    }
+    hideText(); // may be uneeded
+    updateVisitedPlaces();
   }
-  hideText(); // may be uneeded
-  updateVisitedPlaces();
 }
 
 function openCollectedText(elem) {
