@@ -122,6 +122,7 @@ function typeElementText(text_html, elem_id, time_delay=60) {
 function displayAboutContainer() {
   let about_container = document.getElementById("about_container");
   about_container.style.display = "block";
+  about_container.style.opacity = 1;
   about_container.addEventListener("click", function() {
     document.getElementById("about").innerHTML = data.about;
     document.getElementById("continue_button").style.display = "block";
@@ -224,13 +225,15 @@ function initializeMap() {
     zoomSnap: 0.1,
     zoomControl: false
   });
-  map.setView([0, 0], 20);
   new L.Control.Zoom({position: 'topleft'}).addTo(map);
 
   let loc_coords = Object.entries(data.loc_data).map(entry => entry[1].coords);
   let map_center = L.polygon(loc_coords).getBounds().getCenter();
-  // map.setView(map_center, min_zoom + 0.1);
-  setTimeout(() => map.flyTo(map_center, min_zoom + 0.1), 5000);
+  map.setView(map_center, min_zoom + 0.1);
+  // setTimeout(function() {
+  //   map.flyTo(map_center, min_zoom + 0.1);
+  //   map.setView(map_center, min_zoom + 0.1);
+  // }, 5000);
   // map.flyTo(map_center, min_zoom + 0.1);
   map.setMaxBounds(map.getBounds());
 
