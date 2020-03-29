@@ -5,15 +5,17 @@ let markers = {};
 let typewriter_time, continue_button_time;
 const min_zoom = 14.5;
 
+function initializeGame() {
+  let intro_screen = document.getElementById("intro_screen");
+  intro_screen.style.display = "block";
+  intro_screen.style.opacity = 1;
+  let title_div = document.getElementById("intro_title");
+  title_div.innerHTML = `<h1>${data.title}</h1>`;
+}
+
 function exitGame(save=true) {
-  if (document.exitFullscreen) {
-      document.exitFullscreen();
-  } else if (document.webkitExitFullscreen) {
-      document.webkitExitFullscreen();
-  } else if (document.mozCancelFullScreen) {
-      document.mozCancelFullScreen();
-  } else if (document.msExitFullscreen) {
-      document.msExitFullscreen();
+  if (window.fullscreen) {
+    exitFullscreen();
   }
   if (!save) {
     forgetVisitedPlaces();
@@ -23,6 +25,18 @@ function exitGame(save=true) {
   initializeGame();
 }
 
+function exitFullscreen() {
+  if (document.exitFullscreen) {
+      document.exitFullscreen();
+  } else if (document.webkitExitFullscreen) {
+      document.webkitExitFullscreen();
+  } else if (document.mozCancelFullScreen) {
+      document.mozCancelFullScreen();
+  } else if (document.msExitFullscreen) {
+      document.msExitFullscreen();
+  }
+}
+
 function openExitWindow() {
   let exit_screen = document.getElementById("exit_screen");
   exit_screen.style.display = "block";
@@ -30,14 +44,6 @@ function openExitWindow() {
   closeTextContainer();
   closeMenuSlider();
   closeMapContainer();
-}
-
-function initializeGame() {
-  let intro_screen = document.getElementById("intro_screen");
-  intro_screen.style.display = "block";
-  intro_screen.style.opacity = 1;
-  let title_div = document.getElementById("intro_title");
-  title_div.innerHTML = `<h1>${data.title}</h1>`;
 }
 
 function openMenuSlider() {
@@ -145,9 +151,12 @@ function closeTextContainer() {
 }
 
 function displayTextContainer(loc) {
-  let loc_text_container = document.getElementById("loc_text_container");
-  loc_text_container.style.display = "block";
-  displayText(loc);
+  if (loc !== undefined && loc !== null && loc !== "") {
+    let loc_text_container = document.getElementById("loc_text_container");
+    loc_text_container.style.display = "block";
+    console.log(loc);
+    displayText(loc);
+  }
 }
 
 function closeTextGrid() {
@@ -174,7 +183,8 @@ function openFullscreen() {
 }
 
 function openIntro() {
-  openFullscreen();
+  // openFullscreen();
+  requestGeolocationPermision();
   let intro_screen = document.getElementById("intro_screen");
   intro_screen.style.opacity = 0;
   let about_close_button = document.getElementById("close_about_button");
@@ -189,7 +199,6 @@ function openIntro() {
     continue_button.style.display = "block";
     continue_button.style.opacity = 1;
   }, 10000);
-
 }
 
 function startGame() {
@@ -204,6 +213,16 @@ function startGame() {
     let menu = document.getElementById("circle_menu");
     menu.style.display = "block";
     initializeMap();
+
+    map.locate({
+      setView: false,
+      minZoom: min_zoom,
+      watch: true,
+      enableHighAccuracy: true
+    });
+    map.on('locationfound', updateMap);
+    map.on('locationerror', promtLocationError);
+
     buildTextGrid();
     rememberVisitedPlaces();
     updateVisitedPlaces();
@@ -218,14 +237,18 @@ function requestGeolocationPermision() {
   }
 }
 
+function promtLocationError(){
+  alert("Lo siento, no puedo localizarte!");
+}
+
 function initializeMap() {
   const icons = {};
-  map = L.map('map', {
+  map = L.map("map", {
     minZoom: min_zoom,
     zoomSnap: 0.1,
     zoomControl: false
   });
-  new L.Control.Zoom({position: 'topleft'}).addTo(map);
+  new L.Control.Zoom({position: "topleft"}).addTo(map);
 
   let loc_coords = Object.entries(data.loc_data).map(entry => entry[1].coords);
   let map_center = L.polygon(loc_coords).getBounds().getCenter();
@@ -272,7 +295,8 @@ function initializeMap() {
 
     text_showed[loc] = false;
     text_on_display[loc] = false;
-    markers[loc] = L.marker(data.loc_data[loc].coords, {icon: icon}).addTo(map);
+    markers[loc] = L.marker(data.loc_data[loc].coords, {icon: icon});
+    markers[loc].addTo(map);
     markers[loc].on("click", openCollectedText);
     markers[loc].id = `marker_${loc}`;
     // markers[loc]._icon.style.filter = "grayscale(100%)";
@@ -280,13 +304,6 @@ function initializeMap() {
 
   }
 
-  map.locate({
-    setView: false,
-    minZoom: min_zoom,
-    watch: true,
-    enableHighAccuracy: true
-  });
-  map.on('locationfound', updateMap);
 }
 
 function hideText() {
@@ -317,7 +334,7 @@ function is_mobile() {
 function updateMap(pos) {
 
   let accuracy_radius = pos.accuracy / 2; // meters
-  let dist_limit = 1500; // meters
+  let dist_limit = 10500; // meters
   if (accuracy_radius < 10000) {
 
     map.removeLayer(current_marker);
@@ -352,7 +369,11 @@ function updateMap(pos) {
 
   let showed_loc_str = Object.keys(text_showed).filter(key => text_showed[key]).join(",");
   localStorage.setItem("visited_places", showed_loc_str);
-  updateVisitedPlaces();
+  if (Object.keys(markers).length === Object.keys(data.loc_data).length)
+  {
+    updateVisitedPlaces();
+  }
+
 }
 
 function rememberVisitedPlaces() {
@@ -361,12 +382,13 @@ function rememberVisitedPlaces() {
     for (let loc of visited_places) {
       text_showed[loc] = true;
     }
-    updateVisitedPlaces();
+    // updateVisitedPlaces();
   }
 }
 
 function updateVisitedPlaces() {
-  for (let loc of Object.keys(text_showed)) {
+
+  function updateMarkerState(markers, loc) {
     if (text_showed[loc]) {
       // markers[loc]._icon.style["filter"] = "grayscale(0%)";
       markers[loc]._icon.classList.add("selected_icon");
@@ -385,6 +407,13 @@ function updateVisitedPlaces() {
       lock_img.style.display = "block";
     }
   }
+
+  for (let loc of Object.keys(text_showed)) {
+    if (markers[loc] !== undefined) {
+      updateMarkerState(markers, loc);
+    }
+  }
+
 }
 
 function forgetVisitedPlaces() {
@@ -392,10 +421,7 @@ function forgetVisitedPlaces() {
     localStorage.removeItem("visited_places");
     for (let loc of Object.keys(text_showed)) {
       text_showed[loc] = false;
-      markers[loc]._icon.classList.remove("selected_icon");
     }
-    hideText(); // may be uneeded
-    updateVisitedPlaces();
   }
 }
 

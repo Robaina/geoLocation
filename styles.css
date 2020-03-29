@@ -236,6 +236,7 @@ a {
   width: auto;
   height: auto;
   padding: 4px;
+  margin: 2vw;
   text-decoration: none;
   cursor: pointer;
   border-radius: 1vmax;
@@ -325,6 +326,14 @@ a {
   width: 100%;
   min-width: 200px;
   border-radius: 10px;
+}
+
+#close_game_button {
+  border: none;
+  border: 2px solid var(--fancyColor);
+  color: rgb(134, 134, 134);
+  top: 2%;
+  left: 90%;
 }
 
 .close_button {

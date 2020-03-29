@@ -22,13 +22,6 @@
       <button class="fancy_button" id="start_button" onclick="openIntro()">Comenzar</button>
     </div>
 
-    <div class="fullscreen" id="exit_screen">
-      <div class="fullscreen_title" id="exit_title"><h1>¡Hasta pronto!</h1></div>
-      <button class="fancy_button" id="save_button" onclick="exitGame(save=true)">Guardar</button>
-      <button class="fancy_button" id="start_button" onclick="exitGame(save=false)">Cancelar</button>
-
-    </div>
-
     <div class="text_container" id="about_container">
 
       <div class="div_content_container">
@@ -36,7 +29,7 @@
           <article class="text_div" id="about"></article>
         </div>
         <div class="div_footer">
-          <button class="fancy_button" id="continue_button" onclick="startGame()">Continue</button>
+          <button class="fancy_button" id="continue_button" onclick="startGame()">Continuar</button>
         </div>
       </div>
       <button class="close_button" id="close_about_button" onclick="closeAboutContainer()">X</button>
@@ -47,16 +40,24 @@
       <div id="menu_slider">
         <button class="close_button" onclick="closeMenuSlider()">X</button>
         <div class="button_container">
-          <button class="fancy_button" id="reset_button" onclick="forgetVisitedPlaces()">Reset</button>
+          <!-- <button class="fancy_button" id="reset_button" onclick="forgetVisitedPlaces()">Reset</button> -->
           <!-- <button class="fancy_button" onclick="displayAboutContainer()">Info</button> -->
-          <button class="fancy_button" onclick="openExitWindow()">Salir</button>
+          <!-- <button class="fancy_button" onclick="openExitWindow()">Salir</button> -->
         </div>
         <div id="text_grid_title">Lugares visitados</div>
         <div id="text_grid"></div>
       </div>
     </div>
 
+    <div class="fullscreen" id="exit_screen">
+      <div class="fullscreen_title" id="exit_title"><h1>¡Hasta pronto!</h1></div>
+      <button class="fancy_button" id="save_button" onclick="exitGame(save=true)">Guardar</button>
+      <button class="fancy_button" id="start_button" onclick="exitGame(save=false)">Olvidar</button>
+    </div>
+
     <div id="map_container">
+      <button class="close_button" id="close_game_button" onclick="openExitWindow()">X</button>
+
       <div id="map"></div>
 
       <div id="circle_menu" onclick="openMenuSlider()">
