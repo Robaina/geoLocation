@@ -14,8 +14,10 @@ function initializeGame() {
 }
 
 function exitGame(save=true) {
-  if (window.fullscreen) {
+  try {
     exitFullscreen();
+  } catch {
+    
   }
   if (!save) {
     forgetVisitedPlaces();
@@ -154,7 +156,6 @@ function displayTextContainer(loc) {
   if (loc !== undefined && loc !== null && loc !== "") {
     let loc_text_container = document.getElementById("loc_text_container");
     loc_text_container.style.display = "block";
-    console.log(loc);
     displayText(loc);
   }
 }
@@ -202,7 +203,6 @@ function openIntro() {
 }
 
 function startGame() {
-  // openFullscreen();
   let about = document.getElementById("about_container");
   about.style.opacity = 0;
   setTimeout(function() {
@@ -382,7 +382,6 @@ function rememberVisitedPlaces() {
     for (let loc of visited_places) {
       text_showed[loc] = true;
     }
-    // updateVisitedPlaces();
   }
 }
 

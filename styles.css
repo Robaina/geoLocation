@@ -29,6 +29,9 @@ a {
 }
 
 #exit_screen {
+  /* width: 90vw;
+  height: 40vh;
+  border-radius: 50%; */
   display: none;
 }
 
@@ -198,39 +201,6 @@ a {
   border: 2px solid var(--fancyColor);
   border-radius: 5px;
 }
-
-/* #text_grid_title {
-  color: var(--fontColor);
-  font-family: sans-serif;
-  font-size: 2em;
-  padding-top: 5vh;
-  padding-bottom: 3vh;
-} */
-/* #text_grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(100px, 150px));
-  grid-auto-flow: row dense;
-  width: auto;
-  justify-content: center;
-  margin: auto;
-}
-.grid_item {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  width: auto;
-  height: auto;
-  min-height: 100px;
-  padding: calc(0.2 * var(--grid_item_margin));
-  margin: var(--grid_item_margin);
-  border: var(--grid_item_border_width) solid rgb(75, 75, 75);
-  border-radius: 10px;
-  cursor: pointer;
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
-} */
 
 .fancy_button {
   width: auto;
