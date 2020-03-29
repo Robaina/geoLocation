@@ -183,7 +183,7 @@ function openFullscreen() {
 }
 
 function openIntro() {
-  // openFullscreen();
+  openFullscreen();
   requestGeolocationPermision();
   let intro_screen = document.getElementById("intro_screen");
   intro_screen.style.opacity = 0;
