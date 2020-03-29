@@ -1,3 +1,3 @@
-1. Stop map.locate() from updating view when user is zooming and using the map. Otherwise the map resets every 5 seconds or so and the user cannot take a broader view of the map.
-2. Handle position errors.
-3. Keep text on display in the surroundings of the location once opened, and keep all opened texts in a folder that the user can open whenever they like.
+1. Convert exit screen into a dialog window
+2. Make disclaimer screen on first visit
+3. Show pop up when new location visited alongside vibration, the pop up contains the title of the place, some text and a button "mostrar mas..." to go to the complete location text. 

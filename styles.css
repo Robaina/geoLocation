@@ -28,11 +28,26 @@ a {
   overflow-y: hidden;
 }
 
-#exit_screen {
-  /* width: 90vw;
-  height: 40vh;
-  border-radius: 50%; */
+#disclaimer_screen {
   display: none;
+}
+
+#exit_dialog {
+  position: absolute;
+  top: 30vh;
+  left: 5vw;
+  width: 90vw;
+  height: 40vh;
+  border-radius: 10%;
+  display: none;
+  z-index: 4;
+  color: var(--fontColor);
+  opacity: 0;
+  transition: opacity 0.7s;
+}
+
+#exit_title {
+  font-size: 1em;
 }
 
 #intro_screen {
@@ -181,7 +196,8 @@ a {
   display: none;
   padding-top: 0vh;
   opacity: 0;
-  transition: opacity 2s;
+  transition: opacity 2s filter 0.7s;
+  filter: brightness(100%);
 }
 
 #map {

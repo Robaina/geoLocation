@@ -22,6 +22,11 @@
       <button class="fancy_button" id="start_button" onclick="openIntro()">Comenzar</button>
     </div>
 
+    <div class="fullscreen" id="disclaimer_screen">
+      <div class="fullscreen_title" id="disclaimer_title"></div>
+      <button class="fancy_button" id="disclaimer_button" onclick="openDisclaimer()">De acuerdo</button>
+    </div>
+
     <div class="text_container" id="about_container">
 
       <div class="div_content_container">
@@ -42,21 +47,22 @@
         <div class="button_container">
           <!-- <button class="fancy_button" id="reset_button" onclick="forgetVisitedPlaces()">Reset</button> -->
           <!-- <button class="fancy_button" onclick="displayAboutContainer()">Info</button> -->
-          <!-- <button class="fancy_button" onclick="openExitWindow()">Salir</button> -->
+          <!-- <button class="fancy_button" onclick="showExitGameDialog()">Salir</button> -->
         </div>
         <div id="text_grid_title">Lugares visitados</div>
         <div id="text_grid"></div>
       </div>
     </div>
 
-    <div class="fullscreen" id="exit_screen">
-      <div class="fullscreen_title" id="exit_title"><h1>¡Hasta pronto!</h1></div>
+    <div class="fullscreen" id="exit_dialog">
+      <div id="exit_title"><h1>¿Te vas?</h1></div>
       <button class="fancy_button" id="save_button" onclick="exitGame(save=true)">Guardar</button>
-      <button class="fancy_button" id="start_button" onclick="exitGame(save=false)">Olvidar</button>
+      <button class="fancy_button" id="forget_button" onclick="exitGame(save=false)">Olvidar</button>
+      <button class="fancy_button" id="cancel_button" onclick="hideExitGameDialog()">Cancelar</button>
     </div>
 
     <div id="map_container">
-      <button class="close_button" id="close_game_button" onclick="openExitWindow()">X</button>
+      <button class="close_button" id="close_game_button" onclick="showExitGameDialog()">X</button>
 
       <div id="map"></div>
 

@@ -13,17 +13,70 @@ function initializeGame() {
   title_div.innerHTML = `<h1>${data.title}</h1>`;
 }
 
+function openDisclaimer() {
+  requestGeolocationPermision();
+
+}
+
+function requestGeolocationPermision() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      function(pos) {
+        openIntro();
+      },
+      function() {
+        alert("Pues si no aceptas, nos vemos entonces!");
+      }
+    );
+  } else {
+    alert("Lo siento, parece que tu dispositivo no soporta geolocalización...");
+  }
+}
+
+function showExitGameDialog() {
+  let exit_dialog = document.getElementById("exit_dialog");
+  exit_dialog.style.display = "block";
+  let map_container = document.getElementById("map_container");
+  map_container.style.filter = "brightness(50%)";
+  setTimeout(function() {
+    exit_dialog.style.opacity = 0.95;
+  }, 50);
+  // exit_dialog.style.opacity = 1;
+  // closeAboutContainer();
+  // closeTextContainer();
+  // closeMenuSlider();
+  // closeMapContainer();
+}
+
+function hideExitGameDialog() {
+  let exit_dialog = document.getElementById("exit_dialog");
+  exit_dialog.style.opacity = 0;
+  let map_container = document.getElementById("map_container");
+  map_container.style.filter = "brightness(100%)";
+  setTimeout(function() {
+    exit_dialog.style.display = "none";
+  }, 700);
+}
+
 function exitGame(save=true) {
   try {
     exitFullscreen();
   } catch {
-    
+
   }
   if (!save) {
     forgetVisitedPlaces();
   }
-  let exit_screen = document.getElementById("exit_screen");
-  exit_screen.style.display = "none";
+  // let exit_dialog = document.getElementById("exit_dialog");
+  // exit_dialog.style.display = "none";
+  closeAboutContainer();
+  closeTextContainer();
+  closeMenuSlider();
+  closeMapContainer();
+
+  let exit_dialog = document.getElementById("exit_dialog");
+  exit_dialog.style.display = "none";
+
   initializeGame();
 }
 
@@ -37,15 +90,6 @@ function exitFullscreen() {
   } else if (document.msExitFullscreen) {
       document.msExitFullscreen();
   }
-}
-
-function openExitWindow() {
-  let exit_screen = document.getElementById("exit_screen");
-  exit_screen.style.display = "block";
-  closeAboutContainer();
-  closeTextContainer();
-  closeMenuSlider();
-  closeMapContainer();
 }
 
 function openMenuSlider() {
@@ -81,6 +125,7 @@ function closeMapContainer() {
   let map_container = document.getElementById("map_container");
   map.off();
   map.remove();
+  map_container.style.filter = "brightness(100%)";
   map_container.style.display = "none";
 }
 
@@ -185,7 +230,6 @@ function openFullscreen() {
 
 function openIntro() {
   openFullscreen();
-  requestGeolocationPermision();
   let intro_screen = document.getElementById("intro_screen");
   intro_screen.style.opacity = 0;
   let about_close_button = document.getElementById("close_about_button");
@@ -229,14 +273,6 @@ function startGame() {
   }, 500);
 }
 
-function requestGeolocationPermision() {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(pos => "");
-  } else {
-    alert("Lo siento, parece que tu dispositivo no soporta geolocalización...");
-  }
-}
-
 function promtLocationError(){
   alert("Lo siento, no puedo localizarte!");
 }
@@ -267,7 +303,7 @@ function initializeMap() {
   }
 
   L.tileLayer(tile_urls.blackandwhite, {
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> | &copy; <a href="https://semidanrobaina.com">Semidán Robaina, 2020</a>'
   }).addTo(map);
 
   current_marker = L.marker([0, 0]).addTo(map);
