@@ -41,11 +41,7 @@ function showExitGameDialog() {
   setTimeout(function() {
     exit_dialog.style.opacity = 0.95;
   }, 50);
-  // exit_dialog.style.opacity = 1;
-  // closeAboutContainer();
-  // closeTextContainer();
-  // closeMenuSlider();
-  // closeMapContainer();
+  closeMenuSlider();
 }
 
 function hideExitGameDialog() {
@@ -67,8 +63,7 @@ function exitGame(save=true) {
   if (!save) {
     forgetVisitedPlaces();
   }
-  // let exit_dialog = document.getElementById("exit_dialog");
-  // exit_dialog.style.display = "none";
+
   closeAboutContainer();
   closeTextContainer();
   closeMenuSlider();

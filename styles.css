@@ -37,8 +37,8 @@ a {
   top: 30vh;
   left: 5vw;
   width: 90vw;
-  height: 40vh;
-  border-radius: 10%;
+  height: 30vh;
+  border-radius: 15px;
   display: none;
   z-index: 4;
   color: var(--fontColor);
