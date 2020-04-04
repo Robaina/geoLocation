@@ -292,6 +292,10 @@ a {
   background-color: var(--backgroundColor);
   z-index: 4;
 }
+#loc_text_container {
+  /* opacity: 0;
+  transition: opacity 1s; */
+}
 .text_div {
   position: relative;
   width: 60%;
@@ -304,7 +308,7 @@ a {
 
 .text_title {
   margin-top: 0;
-  padding-top: 5vh;
+  padding-top: 10vh;
   text-align: center;
 }
 

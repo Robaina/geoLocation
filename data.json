@@ -2,49 +2,49 @@ data = {
   "loc_data": {
     "loc1": {
       "coords": [28.571261, -16.317934],
-      "tag": "Los Hermanos",
+      "tag": "1. Los Hermanos",
       "text": "<p>Ya hace diez años del evento, sin embargo la gente del pueblo lo recuerda muy bien... Todo comenzó justo donde estás ahora, en el mirador de Los Hermanos. Aunque a diferencia de hoy, un día de temporal invernal.</p>",
       "img": "roque_hermanos.jpg"
     },
     "loc2": {
       "coords": [28.569496, -16.323238],
-      "tag": "Torre del Conde",
+      "tag": "2. Torre del Conde",
       "text": "<p>La dueña de la Torre del Conde tenía dinero y no sabía que hacer con él. Por eso mandó a construir una réplica de la Torre del Conde de San Sebastián de La Gomer, aquí en La Punta. Lo que muchos no saben, es que este viejo edificio, fue cómplice de uno del mayor horror sufridos por este pueblo. Continúa hacía la Iglesia...</p>",
       "img": "torre_conde.jpg"
     },
     "loc3": {
       "coords": [28.568669, -16.325341],
-      "tag": "Iglesia",
+      "tag": "3. Iglesia",
       "text": "<p>Esta Iglesia es la única construida con ladrillo rojo en la isla de Tenerife. Rojo porque está hecho con la sangre de Satanás! No, es coña, simplemente les gustaba el color.</p>",
       "img": "iglesia.jpg"
     },
     "loc4": {
       "coords": [28.566437, -16.331773],
-      "tag": "Piscina",
+      "tag": "4. Piscina",
       "text": "<p>La piscina de La Punta del Hidalgo, lugar frecuentado por los locales. Donde, además de tomar un baño, comentan las últimas novedades que han pasado en el pueblo...</p><p>Y esto es un nuevo párrafo, para ver si lo puedo separar de alguna forma.</p>",
       "img": "piscina.jpg"
     },
     "loc5": {
       "coords": [28.576377, -16.328743],
-      "tag": "Faro",
+      "tag": "5. Faro",
       "text": "<p>El Faro de La Punta. Parece un lugar solemne y tranquilo, pero esconde muchos secretos... No dejes de ver el atardecer desde sus bancos, aunque te aconsejo que vigiles to espalda.</p>",
       "img": "faro.jpg"
     },
     "loc6": {
       "coords": [28.577488, -16.319080],
-      "tag": "Ermita",
+      "tag": "6. Ermita",
       "text": "<p>La ermita de San Juanito, referente de los feligreses punteros. La ermina es hogar de la imagen de San Juan. También es hogar de otras cosas más tenebrosas...</p>",
       "img": "ermita.jpg"
     },
     "loc7": {
       "coords": [28.570509, -16.332885],
-      "tag": "Charco de Furnia",
+      "tag": "7. Charco de Furnia",
       "text": "<p>Este es uno de los lugares de baño habituales, tanto de locales como de foráneos. Las antiguas coladas de lava adoptan formas caprichosas, creando pequeños charcos y túneles submarinos. Uno de ellos escondió un horror de dimensiones inimaginables...</p>",
       "img": "furnia.jpg"
     },
     "loc8": {
       "coords": [28.578115, -16.323149],
-      "tag": "Charco La Arena",
+      "tag": "8. Charco La Arena",
       "text": "<p>Esta fue sin duda la mejor piscina natural de La Punta, al menos hasta que construyeron esta aberración de club naútico. Privatizando el charco de forma totalmente ilegal.</p>",
       "img": "charco_la_arena.jpg"
     }

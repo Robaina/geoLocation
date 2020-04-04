@@ -189,6 +189,10 @@ function closeAboutContainer() {
 function closeTextContainer() {
   let loc_text_container = document.getElementById("loc_text_container");
   loc_text_container.style.display = "none";
+  // loc_text_container.style.opacity = 0;
+  // setTimeout(function() {
+  //   loc_text_container.style.display = "none";
+  // }, 1000);
   hideText();
 }
 
@@ -196,8 +200,36 @@ function displayTextContainer(loc) {
   if (loc !== undefined && loc !== null && loc !== "") {
     let loc_text_container = document.getElementById("loc_text_container");
     loc_text_container.style.display = "block";
+    // loc_text_container.style.opacity = 1;
     displayText(loc);
   }
+}
+
+function hideText() {
+  // let div_container = document.getElementById("loc_text_container");
+  // div_container.style.opacity = 0;
+  let div = document.getElementById("loc_text_div");
+  div.innerHTML = "";
+}
+
+function displayText(loc) {
+  // let div_container = document.getElementById("loc_text_container");
+  // div_container.style.opacity = 1;
+  let div = document.getElementById("loc_text_div");
+  div.innerHTML = "";
+  div.location = loc;
+  let title = document.createElement("h2");
+  title.setAttribute("class", "text_title");
+  title.innerHTML = data.loc_data[loc].tag;
+  div.appendChild(title);
+  let img = document.createElement("img");
+  img.setAttribute("class", "text_image");
+  img.setAttribute("src", `images/${data.loc_data[loc].img}`);
+  div.appendChild(img);
+  let text = document.createElement("div");
+  text.setAttribute("id", `${loc}`);
+  text.innerHTML = data.loc_data[loc].text;
+  div.appendChild(text);
 }
 
 function closeTextGrid() {
@@ -224,7 +256,7 @@ function openFullscreen() {
 }
 
 function openIntro() {
-  openFullscreen();
+  // openFullscreen();
   let intro_screen = document.getElementById("intro_screen");
   intro_screen.style.opacity = 0;
   let about_close_button = document.getElementById("close_about_button");
@@ -324,7 +356,7 @@ function initializeMap() {
       shadowSize: [41, 41]
     });
 
-    text_showed[loc] = false;
+    text_showed[loc] = true; //false;
     text_on_display[loc] = false;
     markers[loc] = L.marker(data.loc_data[loc].coords, {icon: icon});
     markers[loc].addTo(map);
@@ -337,27 +369,6 @@ function initializeMap() {
 
 }
 
-function hideText() {
-  let div = document.getElementById("loc_text_div");
-  div.innerHTML = "";
-}
-
-function displayText(loc) {
-  let div = document.getElementById("loc_text_div");
-  div.innerHTML = "";
-  let title = document.createElement("h2");
-  title.setAttribute("class", "text_title");
-  title.innerHTML = data.loc_data[loc].tag;
-  div.appendChild(title);
-  let img = document.createElement("img");
-  img.setAttribute("class", "text_image");
-  img.setAttribute("src", `images/${data.loc_data[loc].img}`);
-  div.appendChild(img);
-  let text = document.createElement("div");
-  text.innerHTML = data.loc_data[loc].text;
-  div.appendChild(text);
-}
-
 function is_mobile() {
   return window.innerWidth < 600
 }
@@ -365,8 +376,8 @@ function is_mobile() {
 function updateMap(pos) {
 
   let accuracy_radius = pos.accuracy / 2; // meters
-  let dist_limit = 10500; // meters
-  if (accuracy_radius < 10000) {
+  let dist_limit = 30; // meters
+  if (accuracy_radius < 100) {
 
     map.removeLayer(current_marker);
     map.removeLayer(circle);
@@ -480,4 +491,42 @@ function buildTextGrid() {
     }
   }
 
+}
+
+// Swipe screen
+function swipeRightAction() {
+  let previous_loc;
+  let active_locs = Object.keys(text_showed).filter(loc => text_showed[loc] && loc !== "");
+  let div = document.getElementById("loc_text_div");
+  if (div.location === active_locs[0]) {
+    previous_loc = active_locs[0];
+  } else {
+    let current_index = active_locs.indexOf(div.location);
+    previous_loc = active_locs[current_index - 1];
+    // displayText(previous_loc);
+    displayTextContainer(previous_loc);
+  }
+}
+
+function swipeLeftAction() {
+  let next_loc;
+  let active_locs = Object.keys(text_showed).filter(loc => text_showed[loc] && loc !== "");
+  let div = document.getElementById("loc_text_div");
+  let last_loc = active_locs[active_locs.length - 1];
+  if (div.location === last_loc) {
+    next_loc = last_loc;
+  } else {
+    let current_index = active_locs.indexOf(div.location);
+    next_loc = active_locs[current_index + 1];
+    // displayText(next_loc);
+    displayTextContainer(next_loc);
+  }
+}
+
+function swipeUpAction() {
+
+}
+
+function swipeDownAction() {
+  closeTextContainer();
 }

@@ -76,7 +76,7 @@
 
     <div class="text_container" id="loc_text_container">
       <button class="close_button" onclick="closeTextContainer()">X</button>
-      <article class="text_div" id="loc_text_div"></article>
+      <article class="text_div" id="loc_text_div" ontouchstart="touchStart(event,'loc_text_div');" ontouchend="touchEnd(event);" ontouchmove="touchMove(event);" ontouchcancel="touchCancel(event);"></article>
     </div>
 
     <footer id="footer">
@@ -84,5 +84,6 @@
     </footer>
 
     <script src="script.js"></script>
+    <script src="swipescreen.js"></script>
   </body>
 </html>
