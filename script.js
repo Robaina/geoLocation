@@ -1,5 +1,4 @@
 let map, current_marker, circle;
-let text_on_display = {};
 let text_showed = {};
 let markers = {};
 let typewriter_time, continue_button_time;
@@ -256,7 +255,7 @@ function openFullscreen() {
 }
 
 function openIntro() {
-  // openFullscreen();
+  openFullscreen();
   let intro_screen = document.getElementById("intro_screen");
   intro_screen.style.opacity = 0;
   let about_close_button = document.getElementById("close_about_button");
@@ -356,8 +355,7 @@ function initializeMap() {
       shadowSize: [41, 41]
     });
 
-    text_showed[loc] = true; //false;
-    text_on_display[loc] = false;
+    text_showed[loc] = true;
     markers[loc] = L.marker(data.loc_data[loc].coords, {icon: icon});
     markers[loc].addTo(map);
     markers[loc].on("click", openCollectedText);
@@ -391,21 +389,16 @@ function updateMap(pos) {
     for (let loc of Object.keys(data.loc_data)) {
 
       let distance = map.distance(pos.latlng, data.loc_data[loc].coords);
-      if (distance < dist_limit && !text_on_display[loc]) {
+      if (distance < dist_limit && !text_showed[loc]) {
 
-        // displayText(loc);
+        displayTextContainer(loc);
 
         if (is_mobile() && "vibrate" in navigator && !text_showed[loc]) {
           navigator.vibrate([200, 100, 200]);
         }
 
         text_showed[loc] = true;
-        text_on_display[loc] = true;
-
-       } else {
-         text_on_display[loc] = false;
       }
-
     }
   }
 
