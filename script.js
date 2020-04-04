@@ -355,7 +355,7 @@ function initializeMap() {
       shadowSize: [41, 41]
     });
 
-    text_showed[loc] = true;
+    text_showed[loc] = false;
     markers[loc] = L.marker(data.loc_data[loc].coords, {icon: icon});
     markers[loc].addTo(map);
     markers[loc].on("click", openCollectedText);
@@ -372,7 +372,7 @@ function is_mobile() {
 }
 
 function updateMap(pos) {
-
+  console.log(text_showed);
   let accuracy_radius = pos.accuracy / 2; // meters
   let dist_limit = 30; // meters
   if (accuracy_radius < 100) {
