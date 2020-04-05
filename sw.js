@@ -30,11 +30,22 @@ self.addEventListener('activate', evt => {
 });
 // fetch event
 self.addEventListener('fetch', evt => {
+
   evt.respondWith(
-    caches.match(evt.request).then(cacheRes => {
-      return cacheRes || fetch(evt.request);
-    })
+      fetch(evt.request)
+          .catch(() => {
+            return caches.open(CACHE_NAME)
+                .then((cache) => {
+                  return cache.match('offline.html');
+                });
+          })
   );
+  
+  // evt.respondWith(
+  //   caches.match(evt.request).then(cacheRes => {
+  //     return cacheRes || fetch(evt.request);
+  //   })
+  // );
 });
 
 

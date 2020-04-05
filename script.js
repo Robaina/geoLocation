@@ -328,7 +328,7 @@ function initializeMap() {
     blackandwhite: "http://{s}.tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png"
   }
 
-  L.tileLayer(tile_urls.blackandwhite, {
+  L.tileLayer(tile_urls.elegant, {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> | &copy; <a href="https://semidanrobaina.com">Semidán Robaina, 2020</a>'
   }).addTo(map);
 
