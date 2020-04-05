@@ -255,7 +255,7 @@ function openFullscreen() {
 }
 
 function openIntro() {
-  openFullscreen();
+  // openFullscreen();
   let intro_screen = document.getElementById("intro_screen");
   intro_screen.style.opacity = 0;
   let about_close_button = document.getElementById("close_about_button");
