@@ -1,0 +1,16 @@
+{
+  "name": "Los Pozos de La Fajana",
+  "short_name": "PozosFajana",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#404040",
+  "theme_color": "#F4F4F4",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "images/fajana_factoria.jpg",
+      "type": "image/jpg",
+      "sizes": "72x72"
+    }
+  ]
+}
