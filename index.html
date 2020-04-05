@@ -9,11 +9,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Los pozos de La Fajana</title>
     <link rel="icon" type="image/png" href="earth.png">
-    <link rel="manifest" href="manifest.json">
     <script src="data.json"></script>
     <script src="leaflet.js"></script>
     <link rel="stylesheet" href="leaflet.css">
     <link rel="stylesheet" href="styles.css">
+
+    <!-- Make page progressive -->
+    <link rel="manifest" href="manifest.json">
+    <script type="text/javascript">
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('sw.js')
+              .then((reg) => {
+                console.log('Service worker registered.', reg);
+              });
+        });
+      }
+    </script>
   </head>
 
   <body onload="initializeGame()">
