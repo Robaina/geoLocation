@@ -1,12 +1,12 @@
 const staticCacheName = 'site-static-v1';
 const assets = [
   // '/',
-  'index.html',
-  'swipescreen.js',
-  'leaflet.js',
+  'offline.html',
+  // 'swipescreen.js',
+  // 'leaflet.js',
   // 'script.js',
   'styles.css',
-  'images/roque_hermanos.jpg',
+  // 'images/roque_hermanos.jpg',
 ];
 // install event
 self.addEventListener('install', evt => {
@@ -36,3 +36,19 @@ self.addEventListener('fetch', evt => {
     })
   );
 });
+
+
+//
+if (evt.request.mode !== 'navigate') {
+  // Not a page navigation, bail.
+  return;
+}
+evt.respondWith(
+    fetch(evt.request)
+        .catch(() => {
+          return caches.open(CACHE_NAME)
+              .then((cache) => {
+                return cache.match('offline.html');
+              });
+        })
+);
