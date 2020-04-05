@@ -282,7 +282,7 @@ function startGame() {
     map_container.style.opacity = 1;
     let menu = document.getElementById("circle_menu");
     menu.style.display = "block";
-    initializeMap();
+    // initializeMap();
 
     map.locate({
       setView: false,
@@ -366,6 +366,8 @@ function initializeMap() {
   }
 
 }
+
+initializeMap();
 
 function is_mobile() {
   return window.innerWidth < 600
