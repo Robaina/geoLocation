@@ -325,10 +325,11 @@ function initializeMap() {
   let tile_urls = {
     regular: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
     elegant: "https://d1jq292z4qvv72.cloudfront.net/osm/{z}/{x}/{y}.png",
-    blackandwhite: "http://{s}.tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png"
+    blackandwhite: "http://{s}.tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png",
+    bw: "https://tiles.wmflabs.org/bw-mapnik/${z}/${x}/${y}.png"
   }
 
-  L.tileLayer(tile_urls.elegant, {
+  L.tileLayer(tile_urls.bw, {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> | &copy; <a href="https://semidanrobaina.com">Semidán Robaina, 2020</a>'
   }).addTo(map);
 
