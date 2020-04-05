@@ -4,7 +4,7 @@ const assets = [
   'index.html',
   'swipescreen.js',
   'leaflet.js',
-  'script.js',
+  // 'script.js',
   'styles.css',
   'images/roque_hermanos.jpg',
 ];
