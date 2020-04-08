@@ -4,8 +4,6 @@
 // this script can be used with one or more page elements to perform actions based on them being swiped with a single finger
 // http://padilicious.com/code/touchevents/
 
-// <div id="swipeBox" ontouchstart="touchStart(event,'swipeBox');"  ontouchend="touchEnd(event);" ontouchmove="touchMove(event);" ontouchcancel="touchCancel(event);" style="position:relative;width:100%;height:100%;">
-
 var triggerElementID = null; // this variable is used to identity the triggering element
 var fingerCount = 0;
 var startX = 0;
@@ -29,7 +27,7 @@ var swipeDirection = null;
 
 function touchStart(event, passedName) {
     // disable the standard ability to select the touched object
-    event.preventDefault();
+    // event.preventDefault();
     // get the total number of fingers touching the screen
     fingerCount = event.touches.length;
     // since we're looking for a swipe (single finger) and not a gesture (multiple fingers),
@@ -47,7 +45,7 @@ function touchStart(event, passedName) {
 }
 
 function touchMove(event) {
-    event.preventDefault();
+    // event.preventDefault();
     if ( event.touches.length == 1 ) {
         curX = event.touches[0].pageX;
         curY = event.touches[0].pageY;
@@ -57,7 +55,7 @@ function touchMove(event) {
 }
 
 function touchEnd(event) {
-    event.preventDefault();
+    // event.preventDefault();
     // check to see if more than one finger was used and that there is an ending coordinate
     if ( fingerCount == 1 && curX != 0 ) {
         // use the Distance Formula to determine the length of the swipe
@@ -122,9 +120,10 @@ function processingRoutine() {
         swipeLeftAction();
     } else if ( swipeDirection == 'right' ) {
         swipeRightAction();
-    } else if ( swipeDirection == 'up' ) {
-        // swipeUpAction();
-    } else if ( swipeDirection == 'down' ) {
-        // swipeDownAction();
     }
+    // } else if ( swipeDirection == 'up' ) {
+    //     // swipeUpAction();
+    // } else if ( swipeDirection == 'down' ) {
+    //     // swipeDownAction();
+    // }
 }
