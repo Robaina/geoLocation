@@ -123,8 +123,8 @@ function processingRoutine() {
     } else if ( swipeDirection == 'right' ) {
         swipeRightAction();
     } else if ( swipeDirection == 'up' ) {
-        swipeUpAction();
+        // swipeUpAction();
     } else if ( swipeDirection == 'down' ) {
-        swipeDownAction();
+        // swipeDownAction();
     }
 }

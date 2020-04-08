@@ -9,7 +9,7 @@ data = {
     "loc2": {
       "coords": [28.569496, -16.323238],
       "tag": "2. Torre del Conde",
-      "text": "<p>La dueña de la Torre del Conde tenía dinero y no sabía que hacer con él. Por eso mandó a construir una réplica de la Torre del Conde de San Sebastián de La Gomer, aquí en La Punta. Lo que muchos no saben, es que este viejo edificio, fue cómplice de uno del mayor horror sufridos por este pueblo. Continúa hacía la Iglesia...</p>",
+      "text": "<p>La dueña de la Torre del Conde tenía dinero y no sabía que hacer con él. Por eso mandó a construir una réplica de la Torre del Conde de San Sebastián de La Gomer, aquí en La Punta. Lo que muchos no saben, es que este viejo edificio, fue cómplice de uno del mayor horror sufridos por este pueblo. Continúa hacía la Iglesia...</p><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>",
       "img": "torre_conde.jpg"
     },
     "loc3": {

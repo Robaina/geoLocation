@@ -326,6 +326,7 @@ function initializeMap() {
     regular: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
     elegant: "https://d1jq292z4qvv72.cloudfront.net/osm/{z}/{x}/{y}.png",
     blackandwhite: "http://{s}.tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png",
+    // service workers require data over https! that's why it doesn't work
     bw: "https://tiles.wmflabs.org/bw-mapnik/${z}/${x}/${y}.png"
   }
 
@@ -356,7 +357,7 @@ function initializeMap() {
       shadowSize: [41, 41]
     });
 
-    text_showed[loc] = false;
+    text_showed[loc] = true;//false;
     markers[loc] = L.marker(data.loc_data[loc].coords, {icon: icon});
     markers[loc].addTo(map);
     markers[loc].on("click", openCollectedText);
@@ -373,7 +374,6 @@ function is_mobile() {
 }
 
 function updateMap(pos) {
-  console.log(text_showed);
   let accuracy_radius = pos.accuracy / 2; // meters
   let dist_limit = 30; // meters
   if (accuracy_radius < 100) {
@@ -518,9 +518,16 @@ function swipeLeftAction() {
 }
 
 function swipeUpAction() {
-
+  // console.log(Math.ceil(window.scrollHeight - window.scrollTop));
+  console.log(window.screenY);
+  if (Math.ceil(window.scrollHeight - window.scrollTop) === window.clientHeight) {
+    closeTextContainer();
+  }
 }
 
 function swipeDownAction() {
-  closeTextContainer();
+}
+
+function isAtBottomOfDiv(div) {
+  return Math.ceil(div.scrollHeight - div.scrollTop) === div.clientHeight
 }
