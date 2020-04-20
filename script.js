@@ -497,7 +497,6 @@ function swipeRightAction() {
   } else {
     let current_index = active_locs.indexOf(div.location);
     previous_loc = active_locs[current_index - 1];
-    // displayText(previous_loc);
     displayTextContainer(previous_loc);
   }
 }
@@ -512,22 +511,6 @@ function swipeLeftAction() {
   } else {
     let current_index = active_locs.indexOf(div.location);
     next_loc = active_locs[current_index + 1];
-    // displayText(next_loc);
     displayTextContainer(next_loc);
   }
-}
-
-function swipeUpAction() {
-  // console.log(Math.ceil(window.scrollHeight - window.scrollTop));
-  console.log(window.screenY);
-  if (Math.ceil(window.scrollHeight - window.scrollTop) === window.clientHeight) {
-    closeTextContainer();
-  }
-}
-
-function swipeDownAction() {
-}
-
-function isAtBottomOfDiv(div) {
-  return Math.ceil(div.scrollHeight - div.scrollTop) === div.clientHeight
 }
