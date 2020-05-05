@@ -4,6 +4,7 @@
   --fontColor: rgb(255, 255, 255);
   --grid_item_margin: 5px;
   --grid_item_border_width: 5px;
+  --max_total_width: 800px;
 }
 
 html, body {
