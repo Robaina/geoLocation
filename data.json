@@ -2,8 +2,8 @@ data = {
   "loc_data": {
     "loc1": {
       "coords": [28.571261, -16.317934],
-      "tag": "1. Los Hermanos",
-      "text": "<p>Ya hace diez años del evento, sin embargo la gente del pueblo lo recuerda muy bien... Todo comenzó justo donde estás ahora, en el mirador de Los Hermanos. Aunque a diferencia de hoy, un día de temporal invernal.</p>",
+      "tag": "1. Dos Hermanos",
+      "text": "<p>Ya hace diez años del evento, sin embargo la gente del pueblo lo recuerda muy bien... Todo comenzó justo donde estás ahora, en el mirador de Dos Hermanos. Aunque a diferencia de hoy, un día de temporal invernal.</p>",
       "img": "roque_hermanos.jpg"
     },
     "loc2": {

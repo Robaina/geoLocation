@@ -357,7 +357,7 @@ function initializeMap() {
       shadowSize: [41, 41]
     });
 
-    text_showed[loc] = true;//false;
+    text_showed[loc] = false; // set to true during testing
     markers[loc] = L.marker(data.loc_data[loc].coords, {icon: icon});
     markers[loc].addTo(map);
     markers[loc].on("click", openCollectedText);
