@@ -20,10 +20,10 @@ function openDisclaimer() {
 function requestGeolocationPermision() {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(
-      function(pos) {
+      function (pos) {
         openIntro();
       },
-      function() {
+      function () {
         alert("Pues si no aceptas, nos vemos entonces!");
       }
     );
@@ -37,7 +37,7 @@ function showExitGameDialog() {
   exit_dialog.style.display = "block";
   let map_container = document.getElementById("map_container");
   map_container.style.filter = "brightness(50%)";
-  setTimeout(function() {
+  setTimeout(function () {
     exit_dialog.style.opacity = 0.95;
   }, 50);
   closeMenuSlider();
@@ -48,12 +48,12 @@ function hideExitGameDialog() {
   exit_dialog.style.opacity = 0;
   let map_container = document.getElementById("map_container");
   map_container.style.filter = "brightness(100%)";
-  setTimeout(function() {
+  setTimeout(function () {
     exit_dialog.style.display = "none";
   }, 700);
 }
 
-function exitGame(save=true) {
+function exitGame(save = true) {
   try {
     exitFullscreen();
   } catch {
@@ -76,13 +76,13 @@ function exitGame(save=true) {
 
 function exitFullscreen() {
   if (document.exitFullscreen) {
-      document.exitFullscreen();
+    document.exitFullscreen();
   } else if (document.webkitExitFullscreen) {
-      document.webkitExitFullscreen();
+    document.webkitExitFullscreen();
   } else if (document.mozCancelFullScreen) {
-      document.mozCancelFullScreen();
+    document.mozCancelFullScreen();
   } else if (document.msExitFullscreen) {
-      document.msExitFullscreen();
+    document.msExitFullscreen();
   }
 }
 
@@ -123,7 +123,7 @@ function closeMapContainer() {
   map_container.style.display = "none";
 }
 
-function typeElementText(text_html, elem_id, time_delay=60) {
+function typeElementText(text_html, elem_id, time_delay = 60) {
   let i = 0;
   let type_time_delay;
   let text = text_html.replace(/<\/p>/g, "");
@@ -144,10 +144,10 @@ function typeElementText(text_html, elem_id, time_delay=60) {
   function typeWriter() {
     innerHTML = innerHTML.replace(/<\/p>/g, "");
     if (i < text.length) {
-      if (text.slice(i, i+3) === "<p>") {
+      if (text.slice(i, i + 3) === "<p>") {
         added_txt = "<p>";
         i += 2;
-      } else if (text.slice(i, i+3) === "...") {
+      } else if (text.slice(i, i + 3) === "...") {
         added_txt = "...";
         i += 2;
       } else {
@@ -170,14 +170,14 @@ function displayAboutContainer() {
   let about_container = document.getElementById("about_container");
   about_container.style.display = "block";
   about_container.style.opacity = 1;
-  about_container.addEventListener("click", function() {
+  about_container.addEventListener("click", function () {
     document.getElementById("about").innerHTML = data.about;
     document.getElementById("continue_button").style.display = "block";
     document.getElementById("continue_button").style.opacity = 1;
     clearTimeout(typewriter_time);
     clearTimeout(continue_button_time);
   });
-  typeElementText(data.about, "about", time_delay=50);
+  typeElementText(data.about, "about", time_delay = 50);
 }
 
 function closeAboutContainer() {
@@ -262,11 +262,11 @@ function openIntro() {
   about_close_button.style.display = "none";
   let continue_button = document.getElementById("continue_button");
 
-  setTimeout(function() {
+  setTimeout(function () {
     displayAboutContainer();
     intro_screen.style.display = "none";
   }, 3000);
-  continue_button_time = setTimeout(function() {
+  continue_button_time = setTimeout(function () {
     continue_button.style.display = "block";
     continue_button.style.opacity = 1;
   }, 10000);
@@ -275,7 +275,7 @@ function openIntro() {
 function startGame() {
   let about = document.getElementById("about_container");
   about.style.opacity = 0;
-  setTimeout(function() {
+  setTimeout(function () {
     about.style.display = "none";
     let map_container = document.getElementById("map_container");
     map_container.style.display = "block";
@@ -299,7 +299,7 @@ function startGame() {
   }, 500);
 }
 
-function promtLocationError(){
+function promtLocationError() {
   alert("Lo siento, no puedo localizarte!");
 }
 
@@ -310,7 +310,7 @@ function initializeMap() {
     zoomSnap: 0.1,
     zoomControl: false
   });
-  new L.Control.Zoom({position: "topleft"}).addTo(map);
+  new L.Control.Zoom({ position: "topleft" }).addTo(map);
 
   let loc_coords = Object.entries(data.loc_data).map(entry => entry[1].coords);
   let map_center = L.polygon(loc_coords).getBounds().getCenter();
@@ -330,12 +330,12 @@ function initializeMap() {
     bw: "https://tiles.wmflabs.org/bw-mapnik/${z}/${x}/${y}.png"
   }
 
-  L.tileLayer(tile_urls.elegant, {
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> | &copy; <a href="https://semidanrobaina.com">Semidán Robaina, 2020</a>'
+  L.tileLayer(tile_urls.regular, {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> | &copy; <a href="https://semidanrobaina.com">Semidán Robaina, 2020</a>'
   }).addTo(map);
 
   current_marker = L.marker([0, 0]).addTo(map);
-  circle = L.circle([0, 0], {radius: 1}).addTo(map);
+  circle = L.circle([0, 0], { radius: 1 }).addTo(map);
 
   // let greenIcon = new L.Icon({
   //   iconUrl: 'images/green_marker.png',
@@ -358,7 +358,7 @@ function initializeMap() {
     });
 
     text_showed[loc] = false; // set to true during testing
-    markers[loc] = L.marker(data.loc_data[loc].coords, {icon: icon});
+    markers[loc] = L.marker(data.loc_data[loc].coords, { icon: icon });
     markers[loc].addTo(map);
     markers[loc].on("click", openCollectedText);
     markers[loc].id = `marker_${loc}`;
@@ -381,11 +381,11 @@ function updateMap(pos) {
     map.removeLayer(current_marker);
     map.removeLayer(circle);
     current_marker = L.marker(pos.latlng).addTo(map);
-    circle = L.circle(pos.latlng, {radius: accuracy_radius}, {
-        color: 'blue',
-        fillColor: 'rgb(86, 155, 227)',
-        fillOpacity: 0.5
-      }).addTo(map);
+    circle = L.circle(pos.latlng, { radius: accuracy_radius }, {
+      color: 'blue',
+      fillColor: 'rgb(86, 155, 227)',
+      fillOpacity: 0.5
+    }).addTo(map);
 
     for (let loc of Object.keys(data.loc_data)) {
 
@@ -405,8 +405,7 @@ function updateMap(pos) {
 
   let showed_loc_str = Object.keys(text_showed).filter(key => text_showed[key]).join(",");
   localStorage.setItem("visited_places", showed_loc_str);
-  if (Object.keys(markers).length === Object.keys(data.loc_data).length)
-  {
+  if (Object.keys(markers).length === Object.keys(data.loc_data).length) {
     updateVisitedPlaces();
   }
 

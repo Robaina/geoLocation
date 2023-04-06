@@ -1,54 +1,78 @@
 data = {
   "loc_data": {
     "loc1": {
-      "coords": [28.571261, -16.317934],
-      "tag": "1. Dos Hermanos",
-      "text": "<p>Ya hace diez años del evento, sin embargo la gente del pueblo lo recuerda muy bien... Todo comenzó justo donde estás ahora, en el mirador de Dos Hermanos. Aunque a diferencia de hoy, un día de temporal invernal.</p>",
+      "coords": [
+        28.571261,
+        -16.317934
+      ],
+      "tag": "1. Mirador Dos Hermanos",
+      "text": "<p>En el pintoresco pueblo de Punta del Hidalgo, un grupo de amigos se reúne en el Mirador hacia Dos Hermanos, emocionados por el descubrimiento de un viejo mapa. Este mapa muestra una ruta que conecta 8 hitos geográficos del pueblo, cada uno marcado con símbolos misteriosos. Intrigados por el enigma, deciden embarcarse en una aventura para desentrañar el secreto oculto tras estos lugares. Mientras disfrutan de las vistas panorámicas del océano y de los imponentes Roques de Dos Hermanos, preparan sus mochilas y se disponen a seguir el mapa hacia su primer destino.</p>",
       "img": "roque_hermanos.jpg"
     },
     "loc2": {
-      "coords": [28.569496, -16.323238],
+      "coords": [
+        28.569496,
+        -16.323238
+      ],
       "tag": "2. Torre del Conde",
-      "text": "<p>La dueña de la Torre del Conde tenía dinero y no sabía que hacer con él. Por eso mandó a construir una réplica de la Torre del Conde de San Sebastián de La Gomer, aquí en La Punta. Lo que muchos no saben, es que este viejo edificio, fue cómplice de uno del mayor horror sufridos por este pueblo. Continúa hacía la Iglesia...</p><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>",
+      "text": "<p>Siguiendo el mapa, llegan a la histórica Torre del Conde, un antiguo bastión que una vez protegió a la isla de ataques piratas. Mientras exploran el lugar, aprenden sobre la historia de la torre y su importancia en la defensa de Tenerife. Descubren un símbolo en una de las piedras de la torre que coincide con el mapa y encuentran una nota antigua en una grieta cercana. La nota sugiere que la torre fue construida sobre un lugar de importancia para una sociedad secreta.</p>",
       "img": "torre_conde.jpg"
     },
     "loc3": {
-      "coords": [28.568669, -16.325341],
+      "coords": [
+        28.568669,
+        -16.325341
+      ],
       "tag": "3. Iglesia",
-      "text": "<p>Esta Iglesia es la única construida con ladrillo rojo en la isla de Tenerife. Rojo porque está hecho con la sangre de Satanás! No, es coña, simplemente les gustaba el color.</p>",
+      "text": "<p>El tercer hito es la Iglesia de San Mateo, conocida por su arquitectura singular y su historia. Los amigos son recibidos por un amable sacerdote que les cuenta la historia de la iglesia y les muestra algunas de sus características más interesantes. Descubren un símbolo en una de las vidrieras que coincide con el mapa y encuentran un pergamino escondido en un nicho secreto. El pergamino contiene parte de un poema que, al parecer, es una clave para desentrañar el misterio.</p>",
       "img": "iglesia.jpg"
     },
     "loc4": {
-      "coords": [28.566437, -16.331773],
+      "coords": [
+        28.566437,
+        -16.331773
+      ],
       "tag": "4. Piscina",
-      "text": "<p>La piscina de La Punta del Hidalgo, lugar frecuentado por los locales. Donde, además de tomar un baño, comentan las últimas novedades que han pasado en el pueblo...</p><p>Y esto es un nuevo párrafo, para ver si lo puedo separar de alguna forma.</p>",
+      "text": "<p>El siguiente hito es una hermosa piscina natural formada por la erosión costera. Los amigos se dan un refrescante baño y disfrutan del entorno, sorprendidos por la belleza del lugar. En las rocas cercanas, encuentran una inscripción que sugiere que la piscina fue utilizada como lugar de encuentro secreto para la sociedad antigua. Al buscar más a fondo, encuentran una pequeña caja de madera que contiene un objeto enigmático y otro fragmento del poema.</p>",
       "img": "piscina.jpg"
     },
     "loc5": {
-      "coords": [28.576377, -16.328743],
-      "tag": "5. Faro",
-      "text": "<p>El Faro de La Punta. Parece un lugar solemne y tranquilo, pero esconde muchos secretos... No dejes de ver el atardecer desde sus bancos, aunque te aconsejo que vigiles to espalda.</p>",
-      "img": "faro.jpg"
-    },
-    "loc6": {
-      "coords": [28.577488, -16.319080],
-      "tag": "6. Ermita",
-      "text": "<p>La ermita de San Juanito, referente de los feligreses punteros. La ermina es hogar de la imagen de San Juan. También es hogar de otras cosas más tenebrosas...</p>",
-      "img": "ermita.jpg"
-    },
-    "loc7": {
-      "coords": [28.570509, -16.332885],
-      "tag": "7. Charco de Furnia",
-      "text": "<p>Este es uno de los lugares de baño habituales, tanto de locales como de foráneos. Las antiguas coladas de lava adoptan formas caprichosas, creando pequeños charcos y túneles submarinos. Uno de ellos escondió un horror de dimensiones inimaginables...</p>",
+      "coords": [
+        28.576377,
+        -16.328743
+      ],
+      "tag": "5. Charco de Furnia",
+      "text": "<p>Siguiendo el mapa, llegan a los Charcos de La Furnia, unas piscinas naturales en la costa de Punta del Hidalgo. Mientras observan la flora y fauna locales, encuentran otro símbolo que coincide con el mapa y un objeto antiguo en una de las piscinas. Este objeto parece ser parte de un conjunto, y en él, hay otro fragmento del poema que están tratando de completar.</p>",
       "img": "furnia.jpg"
     },
-    "loc8": {
-      "coords": [28.578115, -16.323149],
-      "tag": "8. Charco La Arena",
-      "text": "<p>Esta fue sin duda la mejor piscina natural de La Punta, al menos hasta que construyeron esta aberración de club naútico. Privatizando el charco de forma totalmente ilegal.</p>",
+    "loc6": {
+      "coords": [
+        28.577488,
+        -16.319080
+      ],
+      "tag": "6. Faro de Punta del Hidalgo",
+      "text": "<p>El siguiente destino es el emblemático Faro de Punta del Hidalgo. Los amigos aprenden sobre la historia del faro y cómo ha guiado a los barcos a lo largo de los años. Descubren una placa con otro símbolo y una serie de coordenadas que les dirigen al siguiente hito. En un escondite secreto en el interior del faro, encuentran otro objeto que forma parte del conjunto y otro fragmento del poema. Al unir los fragmentos, comienzan a vislumbrar un mensaje oculto que podría revelar la verdad detrás de su búsqueda.</p>",
+      "img": "faro.jpg"
+    },
+    "loc7": {
+      "coords": [
+        28.570509,
+        -16.332885
+      ],
+      "tag": "7. Charco de La Arena",
+      "text": "<p>Siguiendo las coordenadas, llegan al Club Charco de La Arena, un lugar de reunión popular entre los lugareños. Mientras disfrutan de las vistas y saborean la comida local, buscan minuciosamente el siguiente símbolo. Finalmente, lo encuentran en un rincón discreto del club y descubren un compartimento secreto que contiene un pergamino con pistas adicionales sobre el misterio y otro objeto que forma parte del conjunto.</p>",
       "img": "charco_la_arena.jpg"
+    },
+    "loc8": {
+      "coords": [
+        28.578115,
+        -16.323149
+      ],
+      "tag": "8. Ermita de San Juan",
+      "text": "<p>La última parada es la Ermita de San Juan, un pequeño santuario con una rica historia local. Los amigos son recibidos por una anciana que les cuenta historias sobre el santuario y los milagros atribuidos a San Juan. Siguiendo las pistas del pergamino, encuentran un cofre enterrado cerca de la ermita. Al desenterrarlo y abrirlo, descubren el último objeto del conjunto y el fragmento final del poema.</p><p>Con el poema completo y todos los objetos en su poder, los amigos regresan al Mirador hacia Dos Hermanos para resolver el misterio. Al unir los objetos, revelan un tesoro oculto durante siglos y descubren la verdad detrás de la sociedad secreta que dejó las pistas. La sociedad había protegido este tesoro para preservar la historia y la cultura de la isla, y ahora les tocaba a ellos decidir qué hacer con él.</p><p>El grupo de amigos decide entregar el tesoro al ayuntamiento para su preservación y estudio. Con sus descubrimientos, han desentrañado un misterio que se remonta a los tiempos de los habitantes originales de la isla y han hecho una contribución significativa al conocimiento y la preservación de la historia local. Agradecidos por la aventura y las experiencias compartidas, se prometen seguir explorando su isla y aprendiendo más sobre su rica historia.</p>",
+      "img": "ermita.jpg"
     }
   },
-  "title": "Los pozos de La Fajana",
-  "about": "<p>Esta es una historia diferente. En lugar de leerla tranquilamente en casa, te propongo que te inmerses de lleno en el lugar donde la historia se desarrolla. Verás que hay un mapa de La Punta del Hidalgo con unos marcadores en una serie de coordenadas. Estos puntos son importantes para la historia. Dirígite hacia esos puntos para activar la parte de la historia relacionada con ello. Obviamente necesitas de una conexión de datos para completar la historia...</p><p>¡Suerte y disfruta!</p>"
+  "title": "La Ruta del Legado Escondido",
+  "about": "<p>Esta es una historia diferente. En lugar de leerla tranquilamente en casa, te propongo que te empapes del lugar donde la historia se desarrolla. Verás que hay un mapa de La Punta del Hidalgo con unos marcadores en una serie de coordenadas. Estos puntos son importantes para la historia. Dirígite hacia esos puntos para activar la parte de la historia relacionada con ello.</p><p>¡Suerte y disfruta!</p>"
 }
